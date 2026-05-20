@@ -12,7 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Orbitron:wght@700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        html, body, a, button, [role="button"], select, option { cursor: none !important; }
+        @media (hover: hover) and (pointer: fine) {
+            html, body, a, button, [role="button"], select, option { cursor: none !important; }
+        }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030303; overflow-x: hidden; margin: 0; padding: 0; }
         .bg-grid-pattern {
             background-size: 50px 50px;
@@ -20,17 +22,22 @@
                 linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
         }
-        .custom-cursor {
-            position: fixed; top: 0; left: 0; width: 32px; height: 32px;
-            border: 2px solid rgba(168, 85, 247, 0.5); border-radius: 50%;
-            pointer-events: none; z-index: 9999; will-change: transform;
-            transform: translate3d(-50%, -50%, 0);
-            transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
-        }
-        .cursor-dot {
-            position: fixed; top: 0; left: 0; width: 8px; height: 8px;
-            background-color: #a855f7; border-radius: 50%; pointer-events: none;
-            z-index: 9998; will-change: transform, opacity; transform: translate3d(-50%, -50%, 0);
+        .custom-cursor, .cursor-dot { display: none; }
+        @media (hover: hover) and (pointer: fine) {
+            .custom-cursor {
+                display: block;
+                position: fixed; top: 0; left: 0; width: 32px; height: 32px;
+                border: 2px solid rgba(168, 85, 247, 0.5); border-radius: 50%;
+                pointer-events: none; z-index: 9999; will-change: transform;
+                transform: translate3d(-50%, -50%, 0);
+                transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
+            }
+            .cursor-dot {
+                display: block;
+                position: fixed; top: 0; left: 0; width: 8px; height: 8px;
+                background-color: #a855f7; border-radius: 50%; pointer-events: none;
+                z-index: 9998; will-change: transform, opacity; transform: translate3d(-50%, -50%, 0);
+            }
         }
         @keyframes spinClockwise { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes spinCounterClockwise { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
@@ -135,6 +142,10 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!hasFinePointer || prefersReducedMotion) return;
+
         const cursor = document.getElementById('customCursor');
         const dots = [];
         const maxDots = 7;

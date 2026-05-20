@@ -17,7 +17,7 @@
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center relative">
 
-        <div class="space-y-28 z-20">
+        <div class="space-y-16 lg:space-y-28 z-20">
 
             <div class="relative group pt-6 scroll-reveal-delay-1">
                 <span class="absolute -top-8 left-0 text-7xl font-black text-purple-500/[0.08] select-none uppercase tracking-tighter" style="font-family: 'Orbitron', sans-serif;">01</span>
@@ -55,12 +55,11 @@
             <div class="w-full max-w-[690px] relative z-10 animate-orbital-float">
                 <img src="{{ asset('imagens/perfil.png') }}"
                      alt="Matheus de Paulo - Estratégia Digital"
-                     class="w-full h-auto object-contain filter drop-shadow-[0_0_35px_rgba(168,85,247,0.25)]"
-                     style="transform: scale(1.35); -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 95%); mask-image: linear-gradient(to bottom, black 60%, transparent 95%);">
+                     class="w-full h-auto object-contain filter drop-shadow-[0_0_35px_rgba(168,85,247,0.25)] process-center-img">
             </div>
         </div>
 
-        <div class="space-y-28 z-20">
+        <div class="space-y-16 lg:space-y-28 z-20">
 
             <div class="relative group pt-6 scroll-reveal-delay-1">
                 <span class="absolute -top-8 right-0 text-7xl font-black text-purple-500/[0.08] select-none uppercase tracking-tighter" style="font-family: 'Orbitron', sans-serif;">02</span>
@@ -111,6 +110,17 @@
         100% { transform: translateY(0) translateX(-8px); }
     }
     .animate-orbital-float { animation: orbitalFloat 8s ease-in-out infinite; }
+    .process-center-img {
+        -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 95%);
+        mask-image: linear-gradient(to bottom, black 60%, transparent 95%);
+        transform: scale(1.1);
+    }
+    @media (min-width: 1024px) {
+        .process-center-img { transform: scale(1.35); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .animate-orbital-float { animation: none; }
+    }
 </style>
 
 <script>

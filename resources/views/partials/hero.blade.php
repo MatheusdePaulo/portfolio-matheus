@@ -3,10 +3,7 @@
     $alturaMax  = "750px";
 @endphp
 
-{{-- IMPORT DA FONTE --}}
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
-
     .hero-name-line {
         font-family: 'Orbitron', sans-serif;
         font-weight: 900;
@@ -138,6 +135,11 @@
         from { opacity: 0; transform: translateY(10px); }
         to   { opacity: 1; transform: translateY(0); }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+        .scroll-mouse { animation: none; }
+        .scroll-mouse__wheel { animation: none; }
+    }
 </style>
 
 {{-- WRAPPER GERAL: grid + mouse abaixo --}}
@@ -146,9 +148,9 @@
     <main class="pt-20 pb-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
         {{-- COLUNA ESQUERDA --}}
-        <div class="lg:col-span-6 space-y-7 z-20 relative">
+        <div class="lg:col-span-6 space-y-7 z-20 relative flex flex-col md:items-center lg:items-start">
 
-            <div class="space-y-4 select-none">
+            <div class="space-y-4 select-none md:text-center lg:text-left w-full">
                 <p class="text-sm font-semibold text-white tracking-[0.2em] uppercase">
                     {{ __('site.hero_tag') }}
                 </p>
@@ -162,23 +164,23 @@
                     </span>
                 </h1>
 
-                <p class="text-zinc-300 text-base md:text-lg leading-relaxed max-w-md font-medium">
+                <p class="text-zinc-300 text-base md:text-lg leading-relaxed max-w-md md:max-w-xl lg:max-w-md font-medium mx-auto lg:mx-0">
                     {{ __('site.hero_subtitle') }}
                 </p>
             </div>
 
-            <div class="flex flex-nowrap gap-2 pt-1 overflow-visible">
+            <div class="flex flex-wrap gap-2 pt-1 md:justify-center lg:justify-start">
                 <span class="text-[11px] font-bold px-2.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-purple-300 tracking-wide whitespace-nowrap">{{ __('site.hero_badge_1') }}</span>
                 <span class="text-[11px] font-bold px-2.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-purple-300 tracking-wide whitespace-nowrap">{{ __('site.hero_badge_2') }}</span>
                 <span class="text-[11px] font-bold px-2.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-purple-300 tracking-wide whitespace-nowrap">{{ __('site.hero_badge_3') }}</span>
                 <span class="text-[11px] font-bold px-2.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-purple-300 tracking-wide whitespace-nowrap">{{ __('site.hero_badge_4') }}</span>
             </div>
 
-            <p class="text-zinc-400 text-sm md:text-base leading-relaxed max-w-sm">
+            <p class="text-zinc-400 text-sm md:text-base leading-relaxed max-w-sm md:max-w-lg lg:max-w-sm md:text-center lg:text-left mx-auto lg:mx-0">
                 {{ __('site.hero_desc') }}
             </p>
 
-            <div class="flex flex-wrap gap-5 text-sm text-zinc-400">
+            <div class="flex flex-wrap gap-5 text-sm text-zinc-400 md:justify-center lg:justify-start">
                 <div class="flex items-center gap-2 font-medium">
                     <span class="text-purple-500">📍</span> Ceará, Brasil
                 </div>
@@ -188,11 +190,11 @@
                 </div>
             </div>
 
-            <div class="flex flex-wrap items-center gap-4 pt-1">
+            <div class="flex flex-wrap items-center gap-4 pt-1 md:justify-center lg:justify-start">
                 <a href="#projetos" class="btn-primary">
                     {{ __('site.hero_btn_projects') }} <span class="arrow">→</span>
                 </a>
-                <a href="#contato" class="btn-secondary">
+                <a href="#agendamento" class="btn-secondary">
                     {{ __('site.hero_btn_contact') }}
                 </a>
             </div>
@@ -200,7 +202,7 @@
         </div>
 
         {{-- COLUNA DIREITA --}}
-        <div class="lg:col-span-6 relative flex flex-col justify-center items-center min-h-[460px] lg:min-h-[620px]">
+        <div class="lg:col-span-6 relative flex flex-col justify-center items-center min-h-[300px] sm:min-h-[380px] lg:min-h-[620px]">
 
             <div class="w-full flex items-center justify-center relative z-10 transition-all duration-500 ease-out hover:scale-[1.02]"
                  style="max-width: {{ $larguraMax }}; height: {{ $alturaMax }};
@@ -211,14 +213,14 @@
                      class="w-full h-full object-contain filter drop-shadow-[0_10px_40px_rgba(168,85,247,0.15)]">
             </div>
 
-            <div class="mt-4 lg:mt-0 lg:absolute lg:bottom-10 lg:right-6 z-30
+            <div class="mt-4 lg:mt-0 lg:absolute lg:bottom-10 lg:right-6 z-30 md:self-center lg:self-auto
                         py-5 px-8 rounded-2xl
                         bg-zinc-900/70 border border-white/[0.06]
                         backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)]
                         select-none min-w-[240px] lg:min-w-[280px]">
                 <div class="grid grid-cols-2 gap-8 divide-x divide-white/10 items-center">
                     <div class="text-center space-y-1">
-                        <div class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{{ __('experiência') }}</div>
+                        <div class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{{ __('site.about_exp_label') }}</div>
                         <div class="text-3xl font-black text-purple-400 tracking-tight leading-none">2</div>
                         <div class="text-sm font-bold text-white">{{ __('site.hero_years') }}</div>
                     </div>

@@ -67,15 +67,16 @@
 <section class="w-full max-w-7xl mx-auto px-6 py-20 pb-32 relative z-10">
 
     <div class="flex flex-col mb-16 select-none text-center items-center justify-center">
-        <h2 class="font-orbitron font-900 uppercase tracking-tight text-purple-500 text-3xl md:text-5xl drop-shadow-[0_0_25px_rgba(168,85,247,0.3)]" style="font-family: 'Orbitron', sans-serif;">
+        <h2 class="font-orbitron font-black uppercase tracking-tight text-purple-500 text-3xl md:text-5xl drop-shadow-[0_0_25px_rgba(168,85,247,0.3)]" style="font-family: 'Orbitron', sans-serif;">
             {{ __('site.exp_title') }}
         </h2>
+
     </div>
 
     <div class="flex flex-col gap-4">
 
         <!-- Card 1 - Freelancer (atual) -->
-        <div class="exp-card accent-indigo group relative rounded-2xl bg-zinc-900/60 border border-white/8 p-8">
+        <div class="exp-card accent-indigo group relative rounded-2xl bg-zinc-900/60 border border-white/[0.08] p-8">
             <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-1 mb-1">
                 <h3 class="exp-title text-lg font-bold text-white uppercase tracking-wide flex items-center flex-wrap" style="font-family: 'Orbitron', sans-serif;">
                     {{ __('site.exp0_role') }}
@@ -111,7 +112,7 @@
         </div>
 
         <!-- Card 2 - Otimizap -->
-        <div class="exp-card accent-emerald group relative rounded-2xl bg-zinc-900/60 border border-white/8 p-8">
+        <div class="exp-card accent-emerald group relative rounded-2xl bg-zinc-900/60 border border-white/[0.08] p-8">
             <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-1 mb-1">
                 <h3 class="exp-title text-lg font-bold text-white uppercase tracking-wide" style="font-family: 'Orbitron', sans-serif;">
                     {{ __('site.exp1_role') }}
@@ -144,7 +145,7 @@
         </div>
 
         <!-- Card 3 - UNIFOR -->
-        <div class="exp-card accent-purple group relative rounded-2xl bg-zinc-900/60 border border-white/8 p-8">
+        <div class="exp-card accent-purple group relative rounded-2xl bg-zinc-900/60 border border-white/[0.08] p-8">
             <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-1 mb-1">
                 <h3 class="exp-title text-lg font-bold text-white uppercase tracking-wide" style="font-family: 'Orbitron', sans-serif;">
                     {{ __('site.exp2_role') }}

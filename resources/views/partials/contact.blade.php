@@ -42,7 +42,7 @@
 
                 <div class="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-purple-500/30 to-transparent"></div>
 
-                <form action="#" method="POST" class="space-y-6">
+                <form id="whatsappContactForm" action="#" method="POST" class="space-y-6">
                     @csrf
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -68,12 +68,12 @@
                                 <select id="business_type" name="business_type" required
                                         class="w-full bg-zinc-900/50 border border-zinc-800 focus:border-purple-500 rounded-lg px-4 py-3.5 text-sm text-white focus:outline-none focus:ring-1 focus:ring-purple-500 appearance-none transition-all duration-300 cursor-pointer">
                                     <option value="" disabled selected class="bg-zinc-950 text-zinc-600">{{ __('site.contact_business_ph') }}</option>
-                                    <option value="barbearia" class="bg-zinc-950 text-white">{{ __('site.contact_b1') }}</option>
-                                    <option value="clinica" class="bg-zinc-950 text-white">{{ __('site.contact_b2') }}</option>
-                                    <option value="fisioterapia_dentista" class="bg-zinc-950 text-white">{{ __('site.contact_b3') }}</option>
-                                    <option value="academia" class="bg-zinc-950 text-white">{{ __('site.contact_b4') }}</option>
-                                    <option value="restaurante" class="bg-zinc-950 text-white">{{ __('site.contact_b5') }}</option>
-                                    <option value="outro" class="bg-zinc-950 text-white">{{ __('site.contact_b6') }}</option>
+                                    <option value="Barbearia / Estética" class="bg-zinc-950 text-white">{{ __('site.contact_b1') }}</option>
+                                    <option value="Clínica" class="bg-zinc-950 text-white">{{ __('site.contact_b2') }}</option>
+                                    <option value="Fisioterapia / Dentista" class="bg-zinc-950 text-white">{{ __('site.contact_b3') }}</option>
+                                    <option value="Academia" class="bg-zinc-950 text-white">{{ __('site.contact_b4') }}</option>
+                                    <option value="Restaurante" class="bg-zinc-950 text-white">{{ __('site.contact_b5') }}</option>
+                                    <option value="Outro Pequeno Negócio" class="bg-zinc-950 text-white">{{ __('site.contact_b6') }}</option>
                                 </select>
                                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-zinc-500">
                                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -87,10 +87,10 @@
                                 <select id="objective" name="objective" required
                                         class="w-full bg-zinc-900/50 border border-zinc-800 focus:border-purple-500 rounded-lg px-4 py-3.5 text-sm text-white focus:outline-none focus:ring-1 focus:ring-purple-500 appearance-none transition-all duration-300 cursor-pointer">
                                     <option value="" disabled selected class="bg-zinc-950 text-zinc-600">{{ __('site.contact_objective_ph') }}</option>
-                                    <option value="transmitir_profissionalismo" class="bg-zinc-950 text-white">{{ __('site.contact_o1') }}</option>
-                                    <option value="vender_mais" class="bg-zinc-950 text-white">{{ __('site.contact_o2') }}</option>
-                                    <option value="automatizar" class="bg-zinc-950 text-white">{{ __('site.contact_o3') }}</option>
-                                    <option value="renovar" class="bg-zinc-950 text-white">{{ __('site.contact_o4') }}</option>
+                                    <option value="Transmitir mais Profissionalismo" class="bg-zinc-950 text-white">{{ __('site.contact_o1') }}</option>
+                                    <option value="Atrair novos clientes e vender mais" class="bg-zinc-950 text-white">{{ __('site.contact_o2') }}</option>
+                                    <option value="Automatizar Processos (Agendamentos / Fluxo)" class="bg-zinc-950 text-white">{{ __('site.contact_o3') }}</option>
+                                    <option value="Renovar a Presença Digital" class="bg-zinc-950 text-white">{{ __('site.contact_o4') }}</option>
                                 </select>
                                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-zinc-500">
                                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -145,5 +145,38 @@
             });
         }, { threshold: 0.15 });
         revealElements.forEach(el => observer.observe(el));
+
+        // CORREÇÃO CIRÚRGICA DE ENCODING CONTRA CARACTERES STRANHOS ()
+        document.getElementById('whatsappContactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const clientWhatsapp = document.getElementById('whatsapp').value;
+
+            const businessSelect = document.getElementById('business_type');
+            const businessText = businessSelect.options[businessSelect.selectedIndex].text;
+
+            const objectiveSelect = document.getElementById('objective');
+            const objectiveText = objectiveSelect.options[objectiveSelect.selectedIndex].text;
+
+            const optionalMessage = document.getElementById('message').value || @json(app()->getLocale() === 'en' ? 'Not provided.' : 'Não informada.');
+
+            // Configuração do seu número comercial correto (Fortaleza-CE)
+            const myPhoneNumber = "5585991495105";
+
+            // Construção da mensagem estruturada pura
+            let rawMessage = `🔥 *NOVA SOLICITAÇÃO DE VAGA - PORTFÓLIO*\n\n`;
+            rawMessage += `👤 *Nome do Lead:* ${name}\n`;
+            rawMessage += `📱 *WhatsApp de Contato:* ${clientWhatsapp}\n`;
+            rawMessage += `🏢 *Segmento do Negócio:* ${businessText}\n`;
+            rawMessage += `🎯 *Objetivo Principal:* ${objectiveText}\n\n`;
+            rawMessage += `📝 *Detalhes do Projeto:* \n"${optionalMessage}"`;
+
+            // CORREÇÃO AQUIA: encodeURIComponent blinda a string e traduz os emojis sem quebrar
+            const secureMessageText = encodeURIComponent(rawMessage);
+
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${myPhoneNumber}&text=${secureMessageText}`;
+            window.open(whatsappUrl, '_blank');
+        });
     });
 </script>

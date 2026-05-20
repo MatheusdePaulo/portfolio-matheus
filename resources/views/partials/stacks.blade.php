@@ -1,7 +1,6 @@
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
-    .st-wrap { background: transparent; padding: 40px 0; font-family: sans-serif; max-width: 800px; margin: 0 auto; }
-    .st-title { text-align: center; font-family: 'Orbitron', monospace; font-size: 32px; font-weight: 900; text-transform: uppercase; color: #a855f7; letter-spacing: 2px; margin-bottom: 32px; }
+    .st-wrap { background: transparent; padding: 40px 1.5rem; font-family: sans-serif; max-width: 56rem; margin: 0 auto; }
+    .st-title { text-align: center; font-family: 'Orbitron', monospace; font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 900; text-transform: uppercase; color: #a855f7; letter-spacing: 2px; margin-bottom: 32px; }
 
     .st-card {
         background: #111113;

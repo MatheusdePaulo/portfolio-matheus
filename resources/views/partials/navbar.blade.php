@@ -18,8 +18,6 @@
     $urlSwitchEn = $isAboutPage ? '/en/sobre' : '/en';
 @endphp
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-
 <header class="w-full bg-black/30 border-b border-white/[0.03] backdrop-blur-md sticky top-0 z-50 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
@@ -91,7 +89,11 @@
     </div>
 
     {{-- MOBILE MENU --}}
-    <div id="mobile-menu" class="fixed inset-0 top-0 left-full w-full h-screen bg-black/70 backdrop-blur-2xl z-40 flex flex-col justify-center items-center transition-all duration-500 opacity-0 pointer-events-none">
+    <div id="mobile-menu"
+         role="dialog"
+         aria-modal="true"
+         aria-label="{{ app()->getLocale() === 'en' ? 'Navigation menu' : 'Menu de navegação' }}"
+         class="fixed inset-0 top-0 left-full w-full h-screen bg-black/70 backdrop-blur-2xl z-40 flex flex-col justify-center items-center transition-all duration-500 opacity-0 pointer-events-none">
         <nav class="flex flex-col items-center gap-8 text-center">
             <a href="{{ $urlHome }}" class="mobile-nav-link text-2xl font-bold tracking-wider uppercase text-zinc-500 hover:text-white transition duration-300" style="font-family: 'Orbitron', sans-serif;">{{ __('site.nav_home') }}</a>
             <a href="{{ $urlAbout }}" class="mobile-nav-link text-2xl font-bold tracking-wider uppercase text-zinc-500 hover:text-white transition duration-300" style="font-family: 'Orbitron', sans-serif;">{{ __('site.nav_about') }}</a>
@@ -142,6 +144,9 @@
                 }
             }
             btn.addEventListener('click', toggleMenu);
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && menu.classList.contains('left-0')) toggleMenu();
+            });
 
             // ============== SCROLL SUAVE ==============
             function smoothScrollTo(anchorId) {

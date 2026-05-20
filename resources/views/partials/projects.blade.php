@@ -1,8 +1,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
-
     .project-card { position: relative; border-radius: 24px; overflow: hidden; height: 500px; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; justify-content: flex-end; cursor: pointer; transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), border-color 0.4s ease, box-shadow 0.4s ease; }
     .project-card:hover { transform: translateY(-8px); border-color: rgba(168,85,247,0.4); box-shadow: 0 25px 50px rgba(0,0,0,0.7), 0 0 0 1px rgba(168,85,247,0.15); }
     .project-card--featured { border: 1px solid rgba(168,85,247,0.25); box-shadow: 0 10px 30px rgba(168,85,247,0.05); }
@@ -34,7 +32,7 @@
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16 select-none">
         <div class="space-y-3">
             <p class="font-orbitron text-xs font-bold tracking-[0.3em] text-purple-500 uppercase" style="font-family: 'Orbitron', sans-serif;">{{ __('site.projects_tag') }}</p>
-            <h2 class="font-orbitron font-900 uppercase tracking-tight text-white text-4xl md:text-6xl leading-[1.05]" style="font-family: 'Orbitron', sans-serif;">
+            <h2 class="font-orbitron font-black uppercase tracking-tight text-white text-4xl md:text-6xl leading-[1.05]" style="font-family: 'Orbitron', sans-serif;">
                 {!! nl2br(e(__('site.projects_title'))) !!}
             </h2>
         </div>
@@ -47,7 +45,10 @@
         <div class="swiper-wrapper">
 
             <div class="swiper-slide h-auto">
-                <div class="project-card project-card--featured" onclick="openProjectModal('barber-nathan')">
+                <div class="project-card project-card--featured"
+                     role="button" tabindex="0"
+                     onclick="openProjectModal('barber-nathan')"
+                     onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('barber-nathan')}">
                     <div class="project-card__bg">
                         <img src="{{ asset('imagens/nathan.png') }}" alt="{{ __('site.projects_p1_title') }}">
                     </div>
@@ -65,7 +66,10 @@
             </div>
 
             <div class="swiper-slide h-auto">
-                <div class="project-card" onclick="openProjectModal('autoai-classifier')">
+                <div class="project-card"
+                     role="button" tabindex="0"
+                     onclick="openProjectModal('autoai-classifier')"
+                     onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('autoai-classifier')}">
                     <div class="project-card__bg">
                         <img src="{{ asset('imagens/AutoAi.png') }}" alt="{{ __('site.projects_p2_title') }}">
                     </div>
@@ -83,7 +87,10 @@
             </div>
 
             <div class="swiper-slide h-auto">
-                <div class="project-card" onclick="openProjectModal('task-organizer')">
+                <div class="project-card"
+                     role="button" tabindex="0"
+                     onclick="openProjectModal('task-organizer')"
+                     onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('task-organizer')}">
                     <div class="project-card__bg">
                         <img src="{{ asset('imagens/task.webp') }}" class="cover-fill" alt="{{ __('site.projects_p3_title') }}">
                     </div>
@@ -101,7 +108,10 @@
             </div>
 
             <div class="swiper-slide h-auto">
-                <div class="project-card project-card--featured" onclick="openProjectModal('barber-nathan')">
+                <div class="project-card project-card--featured"
+                     role="button" tabindex="0"
+                     onclick="openProjectModal('barber-nathan')"
+                     onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('barber-nathan')}">
                     <div class="project-card__bg">
                         <img src="{{ asset('imagens/nathan.png') }}" alt="{{ __('site.projects_p1_title') }}">
                     </div>
@@ -119,7 +129,10 @@
             </div>
 
             <div class="swiper-slide h-auto">
-                <div class="project-card" onclick="openProjectModal('plataforma-blindada')">
+                <div class="project-card"
+                     role="button" tabindex="0"
+                     onclick="openProjectModal('plataforma-blindada')"
+                     onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('plataforma-blindada')}">
                     <div class="project-card__bg">
                         <img src="{{ asset('imagens/blindada.webp') }}" class="cover-fill" alt="{{ __('site.projects_p4_title') }}">
                     </div>
@@ -141,9 +154,15 @@
     </div>
 </section>
 
-<div id="project-modal-container" class="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6 opacity-0 pointer-events-none transition-opacity duration-200">
+<div id="project-modal-container"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="modal-title"
+     class="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6 opacity-0 pointer-events-none transition-opacity duration-200">
     <div class="bg-zinc-950 border border-white/[0.08] w-full max-w-4xl max-h-[85vh] overflow-y-auto rounded-[32px] shadow-[0_0_50px_rgba(168,85,247,0.15)] relative">
-        <button onclick="closeProjectModal()" class="absolute top-6 right-6 z-50 flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-zinc-900/60 text-zinc-400 hover:text-white transition-all">✕</button>
+        <button onclick="closeProjectModal()"
+                aria-label="{{ app()->getLocale() === 'en' ? 'Close' : 'Fechar' }}"
+                class="absolute top-6 right-6 z-50 flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-zinc-900/60 text-zinc-400 hover:text-white transition-all">✕</button>
         <div id="modal-dynamic-content" class="p-6 md:p-12 space-y-10"></div>
     </div>
 </div>
@@ -344,7 +363,7 @@
         contentTarget.innerHTML = `
             <div class="space-y-2">
                 <span class="text-xs font-bold tracking-widest text-purple-400 uppercase bg-purple-500/10 border border-purple-500/20 px-3 py-1 rounded-md">${data.tag}</span>
-                <h3 class="text-3xl md:text-5xl font-black text-white font-orbitron uppercase pt-3" style="font-family: 'Orbitron', sans-serif;">${data.title}</h3>
+                <h3 id="modal-title" class="text-3xl md:text-5xl font-black text-white font-orbitron uppercase pt-3" style="font-family: 'Orbitron', sans-serif;">${data.title}</h3>
                 <p class="text-zinc-400 text-sm md:text-base font-medium">${data.subtitle}</p>
             </div>
 
@@ -405,6 +424,10 @@
 
     document.getElementById('project-modal-container').addEventListener('click', function(e) {
         if(e.target === this) closeProjectModal();
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeProjectModal();
     });
 
     document.addEventListener('DOMContentLoaded', function () {

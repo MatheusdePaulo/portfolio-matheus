@@ -1,3 +1,10 @@
+@php
+    $locale = app()->getLocale();
+    $isEn   = $locale === 'en';
+    $home   = $isEn ? '/en' : '/';
+    $base   = $isEn ? '/en' : '';
+@endphp
+
 <footer class="w-full bg-black/40 border-t border-white/[0.03] relative z-10 pt-16 pb-8 text-zinc-400 font-sans">
 
     <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/[0.03] rounded-full blur-[120px] pointer-events-none"></div>
@@ -7,7 +14,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 items-start">
 
             <div class="lg:col-span-4 space-y-4 select-none">
-                <a href="{{ app()->getLocale() === 'en' ? '/en' : '/' }}" class="flex items-center gap-2.5 group w-fit">
+                <a href="{{ $home }}" class="flex items-center gap-2.5 group w-fit">
                     <svg width="22" height="22" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-purple-500 transform group-hover:scale-110 transition duration-300">
                         <path d="M50 5 L95 85 H5 Z" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
                         <path d="M50 25 L80 80 H20 Z" stroke="currentColor" stroke-width="6" stroke-linejoin="round" opacity="0.7"/>
@@ -33,20 +40,20 @@
             <div class="lg:col-span-2 space-y-4">
                 <h4 class="text-xs font-black uppercase tracking-widest text-white font-orbitron" style="font-family: 'Orbitron', sans-serif;">{{ __('site.footer_nav') }}</h4>
                 <ul class="space-y-2 text-xs md:text-sm">
-                    <li><a href="{{ app()->getLocale() === 'en' ? '/en#inicio' : '/#inicio' }}" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.nav_home') }}</a></li>
-                    <li><a href="{{ app()->getLocale() === 'en' ? '/en/sobre' : '/sobre' }}" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.nav_about') }}</a></li>
-                    <li><a href="{{ app()->getLocale() === 'en' ? '/en#projetos' : '/#projetos' }}" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.nav_projects') }}</a></li>
-                    <li><a href="{{ app()->getLocale() === 'en' ? '/en#processos' : '/#processos' }}" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.processes_tag') }}</a></li>
+                    <li><a href="{{ $home }}#inicio" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.nav_home') }}</a></li>
+                    <li><a href="{{ $base }}/sobre" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.nav_about') }}</a></li>
+                    <li><a href="{{ $home }}#projetos" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.nav_projects') }}</a></li>
+                    <li><a href="{{ $home }}#processos" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.processes_tag') }}</a></li>
                 </ul>
             </div>
 
             <div class="lg:col-span-3 space-y-4">
                 <h4 class="text-xs font-black uppercase tracking-widest text-white font-orbitron" style="font-family: 'Orbitron', sans-serif;">{{ __('site.footer_cases') }}</h4>
                 <ul class="space-y-2 text-xs md:text-sm">
-                    <li><a href="{{ app()->getLocale() === 'en' ? '/en#projetos' : '/#projetos' }}" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.projects_p1_title') }}</a></li>
-                    <li><a href="{{ app()->getLocale() === 'en' ? '/en#projetos' : '/#projetos' }}" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.projects_p2_title') }}</a></li>
-                    <li><a href="{{ app()->getLocale() === 'en' ? '/en#projetos' : '/#projetos' }}" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.projects_p3_title') }}</a></li>
-                    <li><a href="{{ app()->getLocale() === 'en' ? '/en#projetos' : '/#projetos' }}" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.projects_p4_title') }}</a></li>
+                    <li><a href="{{ $home }}#projetos" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.projects_p1_title') }}</a></li>
+                    <li><a href="{{ $home }}#projetos" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.projects_p2_title') }}</a></li>
+                    <li><a href="{{ $home }}#projetos" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.projects_p3_title') }}</a></li>
+                    <li><a href="{{ $home }}#projetos" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.projects_p4_title') }}</a></li>
                 </ul>
             </div>
 
@@ -55,15 +62,15 @@
                 <ul class="space-y-2.5 text-xs md:text-sm">
                     <li class="flex items-center gap-2">
                         <span class="text-purple-500 text-xs">✉️</span>
-                        <a href="mailto:contato@matheusdepaulo.com" class="text-zinc-500 hover:text-white transition duration-200 break-all">contato@matheusdepaulo.com</a>
+                        <a href="mailto:matheusdepaulo21@gmail.com" class="text-zinc-500 hover:text-white transition duration-200 break-all">matheusdepaulo21@gmail.com</a>
                     </li>
                     <li class="flex items-center gap-2">
                         <span class="text-purple-500 text-xs">📱</span>
-                        <a href="https://wa.me/5585999990000" target="_blank" class="text-zinc-500 hover:text-white transition duration-200">(85) 99999-0000</a>
+                        <a href="https://wa.me/5585991495105" target="_blank" class="text-zinc-500 hover:text-white transition duration-200">(85) 99149-5105</a>
                     </li>
                     <li class="flex items-center gap-2 text-zinc-500">
                         <span class="text-purple-500 text-xs">📍</span>
-                        <span>{{ app()->getLocale() === 'en' ? 'Ceará, Brazil' : 'Ceará, Brasil' }}</span>
+                        <span>{{ $isEn ? 'Ceará, Brazil' : 'Ceará, Brasil' }}</span>
                     </li>
                 </ul>
             </div>
@@ -73,7 +80,7 @@
         <div class="mt-8 pt-8 border-t border-white/[0.03] flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-zinc-600 select-none">
             <p>© {{ date('Y') }} Matheus de Paulo. {{ __('site.footer_rights') }}</p>
             <p class="flex items-center gap-1.5">
-                {{ __('site.footer_made') }} <span class="text-purple-500/80">✦</span> {{ app()->getLocale() === 'en' ? 'by' : 'por' }} Matheus de Paulo
+                {{ __('site.footer_made') }} <span class="text-purple-500/80">✦</span> {{ $isEn ? 'by' : 'por' }} Matheus de Paulo
             </p>
         </div>
 
