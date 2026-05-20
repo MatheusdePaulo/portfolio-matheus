@@ -1,0 +1,178 @@
+<?php
+return [
+    // Navbar
+    'nav_home'    => 'Início',
+    'nav_about'   => 'Sobre',
+    'nav_projects'=> 'Projetos',
+    'nav_contact' => 'Contato',
+    'nav_cta'     => 'Entrar em contato',
+
+    // Hero
+    'hero_tag'       => 'Desenvolvimento Web Premium',
+    'hero_subtitle'  => 'Transformo negócios locais em referências digitais.',
+    'hero_desc'      => 'Sites que geram credibilidade, atraem clientes e fortalecem a sua marca - do design à entrega, sem complicação.',
+    'hero_available' => 'Disponível para novos projetos',
+    'hero_btn_projects' => 'Ver Projetos',
+    'hero_btn_contact'  => 'Entrar em contato',
+    'hero_badge_1' => 'Sites Profissionais',
+    'hero_badge_2' => 'Design Premium',
+    'hero_badge_3' => 'Entrega Rápida',
+    'hero_badge_4' => 'Suporte Incluso',
+    'hero_years'     => 'Anos',
+    'hero_projects'  => 'Projetos',
+    'hero_delivered' => 'Entregues',
+
+    // Processes
+    'processes_tag'    => 'Método de Trabalho',
+    'processes_title' => "Diferente de tudo que\nvocê já viu",
+    'processes_desc'   => 'Uma esteira de desenvolvimento organizada passo a passo, planejada estrategicamente para transformar a presença digital da sua empresa em um canal focado em faturamento.',
+    'processes_step1_title' => 'Alinhamento Estratégico',
+    'processes_step1_desc'  => 'Iniciamos com uma imersão detalhada para entender seu modelo de negócio, público-alvo e concorrentes. A partir disso, definimos uma direção de design e uma paleta de cores estratégica, feita para transmitir máxima credibilidade e autoridade para a sua marca.',
+    'processes_step2_title' => 'Desenho & Validação',
+    'processes_step2_desc'  => 'Antes de escrever o código, desenho a estrutura visual completa e interativa do seu projeto dentro do Figma. Isso permite que você navegue e aprove a interface exatamente como ela vai ficar no ar, garantindo total transparência e zero retrabalho.',
+    'processes_step3_title' => 'Engenharia Comercial',
+    'processes_step3_desc'  => 'Transformo a interface visual aprovada em uma plataforma ultra-rápida, estável e totalmente otimizada. Desenvolvo um painel administrativo exclusivo para você gerenciar seus dados com total facilidade, integrando regras inteligentes focadas em conversão.',
+    'processes_step4_title' => 'Lançamento & Crescimento',
+    'processes_step4_desc'  => 'Configuro toda a infraestrutura estável para colocar o seu site oficialmente no ar. Realizo testes rigorosos de velocidade de carregamento, links de conversão e estabilidade mobile, assegurando uma entrega impecável pronta para gerar resultados imediatos.',
+    'processes_tag1_estrategia' => 'Estratégia',
+    'processes_tag1_posicionamento' => 'Posicionamento',
+    'processes_tag1_branding' => 'Branding',
+    'processes_tag2_design' => 'Design Exclusivo',
+    'processes_tag2_validacao' => 'Validação',
+    'processes_tag2_nav' => 'Navegabilidade',
+    'processes_tag3_performance' => 'Alta Performance',
+    'processes_tag3_painel' => 'Painel Próprio',
+    'processes_tag3_conversao' => 'Conversão',
+    'processes_tag4_publicacao' => 'Publicação',
+    'processes_tag4_otimizacao' => 'Otimização',
+    'processes_tag4_velocidade' => 'Velocidade',
+
+    // Projects (cards)
+    'projects_tag'        => 'Portfólio',
+    'projects_title'      => "Soluções que\nGeram Resultados",
+    'projects_desc'       => 'Cada projeto é desenhado com foco total em usabilidade, autoridade visual e estratégias feitas para converter visitantes em clientes compradores.',
+    'projects_featured'   => '🔥 Projeto em Destaque',
+    'projects_cta'        => 'Conhecer Estratégia →',
+
+    'projects_p1_title'    => 'Barbearia do Nathan do Corte',
+    'projects_p1_subtitle' => 'Sistema Profissional de Agendamento e Fluxo Online.',
+    'projects_p1_desc'     => 'Desenvolvido sob medida para otimizar o atendimento. Elimina gargalos de mensagens manuais, automatiza o controle de horários em tempo real e entrega uma experiência de agendamento em segundos.',
+
+    'projects_p2_tag'      => 'Inteligência Artificial',
+    'projects_p2_title'    => 'AutoAI Classifier',
+    'projects_p2_subtitle' => 'Central de Triagem e Resposta Automatizada.',
+    'projects_p2_desc'     => 'Acelera o tempo de resposta comercial de empresas em até 80%. Organiza mensagens recebidas e gera minutas automáticas para que nenhum cliente fique sem retorno.',
+
+    'projects_p3_tag'      => 'Alta Performance / UX',
+    'projects_p3_title'    => 'Task Organizer',
+    'projects_p3_subtitle' => 'Gerenciador de Tarefas Focado em Produtividade.',
+    'projects_p3_desc'     => 'Interface minimalista ultra-rápida construída para otimizar fluxos de trabalho diários, contando com salvamento de dados inteligente e filtros de organização intuitivos.',
+
+    'projects_p4_tag'      => 'Segurança Digital',
+    'projects_p4_title'    => 'Plataforma Blindada',
+    'projects_p4_subtitle' => 'Painel de Controle e Gestão de Dados Restritos.',
+    'projects_p4_desc'     => 'Desenvolvido com protocolos rígidos de segurança para proteger informações sensíveis de negócios. Painel administrativo completo, estável e livre de vulnerabilidades.',
+
+// Modal
+    'modal_live'           => '🌐 Acessar Site Online',
+    'modal_git'            => '📁 Ver Código no GitHub',
+    'modal_pain_title'     => '🚨 O Problema (A Dor)',
+    'modal_solution_title' => '💡 A Solução Estratégica',
+    'modal_steps_title'    => 'Esteira de Engenharia (Como foi feito)',
+    'modal_admin_title'    => '🎛️ Engenharia e Inteligência de Gestão (Painel Interno)',
+    'modal_admin_sub'      => 'A engrenagem estratégica desenvolvida para escalar o faturamento e reter clientes de forma automática.',
+    'modal_admin_desc'     => 'Mais do que um design externo de alta conversão, o projeto conta com um ecossistema completo de administração. Ele entrega controle estratégico absoluto sobre o negócio, trazendo inteligência de dados e gatilhos automatizados de marketing:',
+    'modal_final_cta'      => 'Preciso de uma solução assim no meu negócio',
+
+
+    // Sobre (página)
+    'about_page_title'   => 'Sobre — Matheus de Paulo',
+    'about_exp_label'    => 'Experiência',
+    'about_exp_value'    => '+2 Anos',
+    'about_sys_label'    => 'Sistemas',
+    'about_sys_value'    => '+15',
+    'about_h1_p1'        => 'Estratégia,',
+    'about_h1_p2'        => 'Design & Código',
+    'about_p1' => 'Me chamo Matheus de Paulo. Minha jornada no desenvolvimento de sites premium nasceu de uma constatação clara: a grande maioria das empresas e profissionais locais possui serviços excepcionais no mundo físico, mas falha drasticamente em transmitir essa mesma autoridade e segurança na internet.',
+    'about_p2' => 'Não sou o freelancer comum que apenas entrega um site genérico feito em massa e some. Eu atuo desenhando canais de vendas sob medida e páginas de alta conversão projetadas para colocar mais dinheiro no seu bolso — seja automatizando o agendamento de clientes para sua barbearia ou clínica, ou criando um cardápio digital irresistível para seu restaurante.',
+    'about_p3' => 'Através de um modelo de estúdio exclusivo, cuido de cada detalhe do seu projeto: estudo os gargalos que estão fazendo você perder vendas hoje, planejo o design ideal para valorizar a sua marca e construo uma experiência mobile impecável. <strong>Aqui, cada projeto é tratado como uma obra única: sua plataforma é planejada e codificada do zero absoluta, garantindo que ninguém no mercado tenha um sistema sequer parecido com o seu.</strong>',
+    'about_quote' => '"O meu foco é entregar exclusividade total. Rejeito soluções genéricas ou cópias prontas porque o seu negócio merece uma identidade digital única, com autoridade e tecnologia que ninguém mais conseguirá replicar."',
+    'about_cta' => 'Construir minha presença digital premium →',
+
+
+// Contact
+    'contact_tag'         => 'Contato Exclusivo',
+    'contact_title_1'     => 'Pronto para o',
+    'contact_title_2'     => 'Próximo Nível?',
+    'contact_desc'        => 'Eu não apenas crio sites. Desenvolvo canais de venda e posicionamentos premium para empresas que querem dominar o mercado local. Se você busca destacar sua marca e parar de perder clientes, solicite uma vaga.',
+    'contact_slots_label' => 'Vagas para os próximos 2 meses',
+    'contact_slots_note'  => '*Aceito apenas 5 projetos simultâneos para garantir atenção milimétrica ao design, velocidade e estratégia de conversão da sua plataforma. Restam apenas 2 vagas.',
+    'contact_active'      => 'Análise de formulários ativa',
+    'contact_name'        => 'Seu Nome',
+    'contact_name_ph'     => 'Ex: Nathan Silva',
+    'contact_whatsapp'    => 'WhatsApp de Contato',
+    'contact_whatsapp_ph' => '(85) 99999-0000',
+    'contact_business'    => 'Tipo de Negócio',
+    'contact_business_ph' => 'Selecione seu segmento...',
+    'contact_b1' => 'Barbearia / Estética',
+    'contact_b2' => 'Clínica / Médicos',
+    'contact_b3' => 'Fisioterapeuta / Dentista',
+    'contact_b4' => 'Academia / Studio fitness',
+    'contact_b5' => 'Restaurante / Delivery',
+    'contact_b6' => 'Outro pequeno negócio',
+    'contact_objective'    => 'Objetivo Principal',
+    'contact_objective_ph' => 'O que você mais precisa hoje?',
+    'contact_o1' => 'Transmitir mais profissionalismo e autoridade',
+    'contact_o2' => 'Atrair novos clientes e vender mais',
+    'contact_o3' => 'Automatizar agendamentos/pedidos',
+    'contact_o4' => 'Modernizar um site antigo',
+    'contact_message'    => 'Fale brevemente sobre o seu projeto (Opcional)',
+    'contact_message_ph' => 'Conte um detalhe que diferencie seu negócio dos concorrentes...',
+    'contact_submit'     => 'Solicitar Vaga na Agenda',
+
+// Stacks
+    'stacks_title' => 'Stack Técnica',
+    'stacks_design' => 'Design',
+    'stacks_dev' => 'Desenvolvimento',
+    'stacks_ai' => 'Inteligência Artificial',
+    'stacks_tools' => 'Ferramentas',
+
+// Experiencia
+    'exp_title'   => 'Experiência Recente',
+    'exp_current' => 'Atual',
+
+// Freelancer (atual)
+    'exp0_role'    => 'Desenvolvedor Web Freelancer',
+    'exp0_period'  => 'Jan 2026 — Presente',
+    'exp0_company' => 'Matheus de Paulo — Studio',
+    'exp0_desc'    => 'Atuação como freelancer desenhando e codificando sites premium do zero para empresas e profissionais locais. Cuido de todo o ciclo do projeto: estratégia, design no <span class="text-zinc-200 font-medium">Figma</span>, desenvolvimento full-stack com <span class="text-zinc-200 font-medium">Laravel + Livewire</span> e publicação. Cada projeto é único, planejado para gerar autoridade digital e converter visitantes em clientes.',
+    'exp0_badge1'  => 'Projetos Sob Medida',
+    'exp0_badge2'  => 'Design ao Deploy',
+    'exp0_badge3'  => 'Foco em Conversão',
+
+// Otimizap
+    'exp1_role'    => 'Web Developer (Back-end)',
+    'exp1_period'  => 'Jul 2025 — Dez 2025',
+    'exp1_company' => 'Otimizap - Nunu Tech',
+    'exp1_desc'    => 'Atuação focada no desenvolvimento de soluções web robustas utilizando <span class="text-zinc-200 font-medium">PHP e Laravel</span>. Desenvolvimento orientado por entregas e metas de alta performance, garantindo autonomia completa no desenho da arquitetura e cumprimento ágil dos objetivos do ecossistema.',
+    'exp1_badge1'  => 'Alta Performance',
+    'exp1_badge2'  => 'Arquitetura Autônoma',
+    'exp1_badge3'  => 'Entrega por Metas',
+
+// UNIFOR
+    'exp2_role'    => 'Extension Student (Back-end Developer)',
+    'exp2_period'  => 'Jul 2024 — Dez 2024',
+    'exp2_company' => 'UNIFOR',
+    'exp2_desc'    => 'Atuação no desenvolvimento e estruturação do back-end focado em um aplicativo de acessibilidade. Responsável pela criação de APIs seguras e otimizadas utilizando <span class="text-zinc-200 font-medium">Java e Spring Boot</span>, aplicando padrões de arquitetura para garantir manutenibilidade e escalabilidade do projeto.',
+    'exp2_badge1'  => 'Acessibilidade',
+    'exp2_badge2'  => 'APIs Seguras',
+    'exp2_badge3'  => 'Arquitetura Escalável',
+
+// Footer
+    'footer_desc'     => 'Desenvolvimento web premium focado em posicionamento de marca, experiência mobile e conversão para empresas de alto padrão.',
+    'footer_nav'      => 'Navegação',
+    'footer_cases'    => 'Casos de Sucesso',
+    'footer_channels' => 'Canais Oficiais',
+    'footer_rights'   => 'Todos os direitos reservados.',
+    'footer_made'     => 'Feito com',
+];
