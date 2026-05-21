@@ -12,11 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* Cursor customizado só em telas com mouse fino (desktop) */
-        @media (hover: hover) and (pointer: fine) {
-            html, body, a, button { cursor: none !important; }
-        }
-
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #030303;
@@ -50,38 +45,46 @@
             user-select: none;
         }
 
-        /* Cursor — só renderiza em desktop */
+        /* Cursor — oculto por padrão, ativado via JS após primeiro mousemove confirmado */
         .custom-cursor, .cursor-dot {
             display: none;
         }
-        @media (hover: hover) and (pointer: fine) {
-            .custom-cursor {
-                display: block;
-                position: fixed;
-                top: 0; left: 0;
-                width: 32px;
-                height: 32px;
-                border: 2px solid rgba(168, 85, 247, 0.5);
-                border-radius: 50%;
-                pointer-events: none;
-                transform: translate3d(0, 0, 0);
-                z-index: 9999;
-                transition: width 0.2s, height 0.2s, background-color 0.2s;
-                will-change: transform;
-            }
-            .cursor-dot {
-                display: block;
-                position: fixed;
-                top: 0; left: 0;
-                width: 8px;
-                height: 8px;
-                background-color: #a855f7;
-                border-radius: 50%;
-                pointer-events: none;
-                transform: translate3d(0, 0, 0);
-                z-index: 9998;
-                will-change: transform, opacity;
-            }
+
+        /* cursor: none só entra quando o JS confirmou posição real */
+        body.cursor-ready,
+        body.cursor-ready a,
+        body.cursor-ready button,
+        body.cursor-ready [role="button"] {
+            cursor: none !important;
+        }
+
+        body.cursor-ready .custom-cursor {
+            display: block;
+            position: fixed;
+            top: 0; left: 0;
+            width: 32px;
+            height: 32px;
+            border: 2px solid rgba(168, 85, 247, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            transition: width 0.2s ease, height 0.2s ease,
+                        background-color 0.2s ease, opacity 0.4s ease;
+            will-change: transform;
+        }
+
+        body.cursor-ready .cursor-dot {
+            display: block;
+            position: fixed;
+            top: 0; left: 0;
+            width: 8px;
+            height: 8px;
+            background-color: #a855f7;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            will-change: transform, opacity;
         }
 
         @keyframes spinClockwise { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -244,92 +247,120 @@
 
 <script>
     (function () {
-        // Detecta se deve rodar efeitos pesados
-        const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+        const hasFinePointer       = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const isDesktop = window.innerWidth >= 768;
+        // Fallback de detecção: dispositivos touch-only não têm fine pointer
+        const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-        // ============== CURSOR CUSTOMIZADO (só desktop) ==============
-        if (hasFinePointer && !prefersReducedMotion) {
-            const cursor = document.getElementById('customCursor');
-            const dots = [];
-            const maxDots = isDesktop ? 12 : 6;
-            let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
-            let layerOffsetX = 0, layerOffsetY = 0;
+        // Sai cedo se: preferência de movimento reduzido, OU dispositivo touch sem fine pointer
+        if (prefersReducedMotion || (!hasFinePointer && isTouch)) return;
 
-            for (let i = 0; i < maxDots; i++) {
-                const dot = document.createElement('div');
-                dot.className = 'cursor-dot';
-                document.body.appendChild(dot);
-                dots.push({ el: dot, x: 0, y: 0 });
-            }
+        const cursor  = document.getElementById('customCursor');
+        const maxDots = window.innerWidth >= 768 ? 12 : 6;
+        const dots    = [];
+        const layers  = document.querySelectorAll('.parallax-layer');
 
-            const layers = document.querySelectorAll('.parallax-layer');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let layerOffsetX = 0, layerOffsetY = 0;
+        let animationId  = null;
 
-            // UM ÚNICO listener de mousemove (em vez de dois)
-            window.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                layerOffsetX = (mouseX / window.innerWidth) - 0.5;
-                layerOffsetY = (mouseY / window.innerHeight) - 0.5;
-            }, { passive: true });
-
-            // Parallax atualiza com throttle via rAF
-            let parallaxScheduled = false;
-            function updateParallax() {
-                layers.forEach((layer) => {
-                    const speed = parseFloat(layer.getAttribute('data-speed')) || -40;
-                    layer.style.transform = `translate3d(${layerOffsetX * speed}px, ${layerOffsetY * speed}px, 0)`;
-                });
-                parallaxScheduled = false;
-            }
-
-            function animateCursor() {
-                // Lerp suave
-                cursorX += (mouseX - cursorX) * 0.2;
-                cursorY += (mouseY - cursorY) * 0.2;
-                cursor.style.transform = `translate3d(${cursorX - 16}px, ${cursorY - 16}px, 0)`;
-
-                let targetX = mouseX, targetY = mouseY;
-                dots.forEach((dot, index) => {
-                    dot.x += (targetX - dot.x) * 0.35;
-                    dot.y += (targetY - dot.y) * 0.35;
-                    const scale = (maxDots - index) / maxDots;
-                    dot.el.style.transform = `translate3d(${dot.x - 4}px, ${dot.y - 4}px, 0) scale(${scale})`;
-                    dot.el.style.opacity = scale * 0.7;
-                    targetX = dot.x;
-                    targetY = dot.y;
-                });
-
-                // Atualiza parallax no mesmo frame
-                if (!parallaxScheduled) {
-                    parallaxScheduled = true;
-                    updateParallax();
-                }
-
-                requestAnimationFrame(animateCursor);
-            }
-            requestAnimationFrame(animateCursor);
-
-            // Hover effect no cursor
-            document.addEventListener('mouseover', (e) => {
-                const target = e.target.closest('a, button, [role="button"]');
-                if (target) {
-                    cursor.style.width = '45px';
-                    cursor.style.height = '45px';
-                    cursor.style.backgroundColor = 'rgba(168, 85, 247, 0.1)';
-                }
-            }, { passive: true });
-
-            document.addEventListener('mouseout', (e) => {
-                const target = e.target.closest('a, button, [role="button"]');
-                if (target) {
-                    cursor.style.width = '32px';
-                    cursor.style.height = '32px';
-                    cursor.style.backgroundColor = 'transparent';
-                }
-            }, { passive: true });
+        // Cria os pontos do rastro (ficam ocultos até cursor-ready)
+        for (let i = 0; i < maxDots; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'cursor-dot';
+            document.body.appendChild(dot);
+            dots.push({ el: dot, x: 0, y: 0 });
         }
+
+        function updateParallax() {
+            layers.forEach((layer) => {
+                const speed = parseFloat(layer.getAttribute('data-speed')) || -40;
+                layer.style.transform = `translate3d(${layerOffsetX * speed}px, ${layerOffsetY * speed}px, 0)`;
+            });
+        }
+
+        function animateCursor() {
+            // Lerp suave do anel
+            cursorX += (mouseX - cursorX) * 0.2;
+            cursorY += (mouseY - cursorY) * 0.2;
+            cursor.style.transform = `translate3d(${cursorX - 16}px, ${cursorY - 16}px, 0)`;
+
+            // Rastro de pontos em cadeia
+            let targetX = mouseX, targetY = mouseY;
+            dots.forEach((dot, index) => {
+                dot.x += (targetX - dot.x) * 0.35;
+                dot.y += (targetY - dot.y) * 0.35;
+                const scale = (maxDots - index) / maxDots;
+                dot.el.style.transform = `translate3d(${dot.x - 4}px, ${dot.y - 4}px, 0) scale(${scale})`;
+                dot.el.style.opacity   = scale * 0.7;
+                targetX = dot.x;
+                targetY = dot.y;
+            });
+
+            updateParallax();
+            animationId = requestAnimationFrame(animateCursor);
+        }
+
+        function onContinuousMove(e) {
+            mouseX       = e.clientX;
+            mouseY       = e.clientY;
+            layerOffsetX = (mouseX / window.innerWidth)  - 0.5;
+            layerOffsetY = (mouseY / window.innerHeight) - 0.5;
+        }
+
+        // PRIMEIRO MOUSEMOVE: inicializa nas coordenadas reais antes de mostrar qualquer coisa
+        function onFirstMove(e) {
+            mouseX       = e.clientX;
+            mouseY       = e.clientY;
+            layerOffsetX = (mouseX / window.innerWidth)  - 0.5;
+            layerOffsetY = (mouseY / window.innerHeight) - 0.5;
+
+            // Posiciona tudo na posição real do mouse ANTES de tornar visível
+            cursorX = mouseX;
+            cursorY = mouseY;
+            cursor.style.transform = `translate3d(${cursorX - 16}px, ${cursorY - 16}px, 0)`;
+            dots.forEach(dot => {
+                dot.x = mouseX;
+                dot.y = mouseY;
+                dot.el.style.transform = `translate3d(${mouseX - 4}px, ${mouseY - 4}px, 0) scale(1)`;
+                dot.el.style.opacity   = '0';
+            });
+
+            // Ativa cursor-ready: esconde cursor do sistema, exibe elementos customizados
+            document.body.classList.add('cursor-ready');
+
+            // Fade-in do anel no próximo frame (garante que display:block já foi processado)
+            requestAnimationFrame(() => {
+                cursor.style.opacity = '1';
+                if (!animationId) animationId = requestAnimationFrame(animateCursor);
+            });
+
+            // Troca para listener contínuo leve
+            window.addEventListener('mousemove', onContinuousMove, { passive: true });
+        }
+
+        // once:true remove o listener automaticamente após o primeiro disparo
+        window.addEventListener('mousemove', onFirstMove, { passive: true, once: true });
+
+        // Hover expand/shrink em elementos interativos
+        document.addEventListener('mouseover', (e) => {
+            if (!document.body.classList.contains('cursor-ready')) return;
+            if (e.target.closest('a, button, [role="button"]')) {
+                cursor.style.width           = '45px';
+                cursor.style.height          = '45px';
+                cursor.style.backgroundColor = 'rgba(168, 85, 247, 0.1)';
+            }
+        }, { passive: true });
+
+        document.addEventListener('mouseout', (e) => {
+            if (!document.body.classList.contains('cursor-ready')) return;
+            if (e.target.closest('a, button, [role="button"]')) {
+                cursor.style.width           = '32px';
+                cursor.style.height          = '32px';
+                cursor.style.backgroundColor = 'transparent';
+            }
+        }, { passive: true });
     })();
 </script>
 </body>
