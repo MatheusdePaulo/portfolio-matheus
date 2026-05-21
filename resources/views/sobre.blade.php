@@ -12,32 +12,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Orbitron:wght@700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        @media (hover: hover) and (pointer: fine) {
-            html, body, a, button, [role="button"], select, option { cursor: none !important; }
-        }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030303; overflow-x: hidden; margin: 0; padding: 0; }
         .bg-grid-pattern {
             background-size: 50px 50px;
             background-image:
                 linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-        }
-        .custom-cursor, .cursor-dot { display: none; }
-        @media (hover: hover) and (pointer: fine) {
-            .custom-cursor {
-                display: block;
-                position: fixed; top: 0; left: 0; width: 32px; height: 32px;
-                border: 2px solid rgba(168, 85, 247, 0.5); border-radius: 50%;
-                pointer-events: none; z-index: 9999; will-change: transform;
-                transform: translate3d(-50%, -50%, 0);
-                transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
-            }
-            .cursor-dot {
-                display: block;
-                position: fixed; top: 0; left: 0; width: 8px; height: 8px;
-                background-color: #a855f7; border-radius: 50%; pointer-events: none;
-                z-index: 9998; will-change: transform, opacity; transform: translate3d(-50%, -50%, 0);
-            }
         }
         @keyframes spinClockwise { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes spinCounterClockwise { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
@@ -58,8 +38,6 @@
     </style>
 </head>
 <body class="text-white min-h-screen relative bg-grid-pattern overflow-x-hidden">
-
-<div class="custom-cursor" id="customCursor"></div>
 
 <div class="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-0">
     <div class="absolute w-[700px] h-[700px] rounded-full bg-purple-600/10 blur-[130px] top-[-5%] left-[-10%]"></div>
@@ -140,79 +118,6 @@
 @include('partials.footer')
 
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (!hasFinePointer || prefersReducedMotion) return;
-
-        const cursor = document.getElementById('customCursor');
-        const dots = [];
-        const maxDots = 7;
-        let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
-
-        for (let i = 0; i < maxDots; i++) {
-            const dot = document.createElement('div');
-            dot.className = 'cursor-dot';
-            document.body.appendChild(dot);
-            dots.push({ el: dot, x: 0, y: 0 });
-        }
-
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        }, { passive: true });
-
-        function animateElements() {
-            cursorX += (mouseX - cursorX) * 0.25;
-            cursorY += (mouseY - cursorY) * 0.25;
-            cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
-
-            let targetX = mouseX, targetY = mouseY;
-            dots.forEach((dot, index) => {
-                dot.x += (targetX - dot.x) * 0.4;
-                dot.y += (targetY - dot.y) * 0.4;
-
-                const scale = (maxDots - index) / maxDots;
-                dot.el.style.transform = `translate3d(${dot.x}px, ${dot.y}px, 0) translate(-50%, -50%) scale(${scale})`;
-                dot.el.style.opacity = scale * 0.6;
-
-                targetX = dot.x;
-                targetY = dot.y;
-            });
-
-            const xOffset = (mouseX / window.innerWidth) - 0.5;
-            const yOffset = (mouseY / window.innerHeight) - 0.5;
-
-            layers.forEach((layer) => {
-                const speed = layer.getAttribute('data-speed') || -20;
-                layer.style.transform = `translate3d(${xOffset * speed}px, ${yOffset * speed}px, 0)`;
-            });
-
-            requestAnimationFrame(animateElements);
-        }
-
-        const layers = document.querySelectorAll('.parallax-layer');
-        requestAnimationFrame(animateElements);
-
-        document.addEventListener('mouseover', (e) => {
-            if (e.target.closest('a, button, [role="button"]')) {
-                cursor.style.width = '48px';
-                cursor.style.height = '48px';
-                cursor.style.backgroundColor = 'rgba(168, 85, 247, 0.08)';
-                cursor.style.borderColor = 'rgba(168, 85, 247, 0.8)';
-            }
-        }, { passive: true });
-
-        document.addEventListener('mouseout', (e) => {
-            if (e.target.closest('a, button, [role="button"]')) {
-                cursor.style.width = '32px';
-                cursor.style.height = '32px';
-                cursor.style.backgroundColor = 'transparent';
-                cursor.style.borderColor = 'rgba(168, 85, 247, 0.5)';
-            }
-        }, { passive: true });
-    });
-</script>
+@include('partials.custom-cursor')
 </body>
 </html>
