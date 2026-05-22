@@ -22,6 +22,9 @@ return [
     'hero_projects'  => 'Projects',
     'hero_delivered' => 'Delivered',
 
+    // EN
+    'nav_solutions' => 'Solutions',
+
     // Processes
     'processes_tag'    => 'Work Method',
     'processes_title' => "Different from everything\nyou've seen",

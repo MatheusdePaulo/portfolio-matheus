@@ -47,6 +47,9 @@ return [
     'processes_tag4_otimizacao' => 'Otimização',
     'processes_tag4_velocidade' => 'Velocidade',
 
+    // PT
+    'nav_solutions' => 'Soluções',
+
     // Projects (cards)
     'projects_tag'        => 'Portfólio',
     'projects_title'      => "Soluções que\nGeram Resultados",

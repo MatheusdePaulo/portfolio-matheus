@@ -140,12 +140,18 @@
         .scroll-mouse { animation: none; }
         .scroll-mouse__wheel { animation: none; }
     }
+
+    @media (max-width: 1023px) {
+        .hero-image-wrapper {
+            height: 360px !important;
+        }
+    }
 </style>
 
 {{-- WRAPPER GERAL: grid + mouse abaixo --}}
 <div class="w-full max-w-7xl mx-auto px-6 relative z-10">
 
-    <main class="pt-20 pb-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+    <main class="pt-20 pb-8 grid grid-cols-1 lg:grid-cols-12 gap-1 lg:gap-12 items-center">
 
         {{-- COLUNA ESQUERDA --}}
         <div class="lg:col-span-6 space-y-7 z-20 relative flex flex-col md:items-center lg:items-start">
@@ -169,7 +175,7 @@
                 </p>
             </div>
 
-            <div class="flex flex-wrap gap-2 pt-1 md:justify-center lg:justify-start">
+            <div class="flex flex-wrap gap-2 pt-1 justify-center lg:justify-start">
                 <span class="text-[11px] font-bold px-2.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-purple-300 tracking-wide whitespace-nowrap">{{ __('site.hero_badge_1') }}</span>
                 <span class="text-[11px] font-bold px-2.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-purple-300 tracking-wide whitespace-nowrap">{{ __('site.hero_badge_2') }}</span>
                 <span class="text-[11px] font-bold px-2.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-purple-300 tracking-wide whitespace-nowrap">{{ __('site.hero_badge_3') }}</span>
@@ -180,7 +186,7 @@
                 {{ __('site.hero_desc') }}
             </p>
 
-            <div class="flex flex-wrap gap-5 text-sm text-zinc-400 md:justify-center lg:justify-start">
+            <div class="flex flex-wrap gap-5 text-sm text-zinc-400 justify-center lg:justify-start">
                 <div class="flex items-center gap-2 font-medium">
                     <span class="text-purple-500">📍</span> Ceará, Brasil
                 </div>
@@ -190,7 +196,7 @@
                 </div>
             </div>
 
-            <div class="flex flex-wrap items-center gap-4 pt-1 md:justify-center lg:justify-start">
+            <div class="flex flex-wrap items-center gap-4 pt-1 justify-center lg:justify-start">
                 <a href="#projetos" class="btn-primary">
                     {{ __('site.hero_btn_projects') }} <span class="arrow">→</span>
                 </a>
@@ -204,7 +210,7 @@
         {{-- COLUNA DIREITA --}}
         <div class="lg:col-span-6 relative flex flex-col justify-center items-center min-h-[300px] sm:min-h-[380px] lg:min-h-[620px]">
 
-            <div class="w-full flex items-center justify-center relative z-10 transition-all duration-500 ease-out hover:scale-[1.02]"
+            <div class="hero-image-wrapper w-full flex items-center justify-center relative z-10 transition-all duration-500 ease-out hover:scale-[1.02]"
                  style="max-width: {{ $larguraMax }}; height: {{ $alturaMax }};
                         -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 92%);
                         mask-image: linear-gradient(to bottom, black 60%, transparent 92%);">
@@ -213,7 +219,7 @@
                      class="w-full h-full object-contain filter drop-shadow-[0_10px_40px_rgba(168,85,247,0.15)]">
             </div>
 
-            <div class="mt-4 lg:mt-0 lg:absolute lg:bottom-10 lg:right-6 z-30 md:self-center lg:self-auto
+            <div class="absolute bottom-4 right-4 lg:bottom-10 lg:right-6 z-30
                         py-5 px-8 rounded-2xl
                         bg-zinc-900/70 border border-white/[0.06]
                         backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)]

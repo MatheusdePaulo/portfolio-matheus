@@ -3,19 +3,29 @@
     $isEn = $locale === 'en';
     $base = $isEn ? '/en' : '';
 
-    // Detecta se estamos na página /sobre (PT ou EN)
-    $isAboutPage = request()->is('sobre') || request()->is('en/sobre');
+    // Detecta página atual
+    $isAboutPage     = request()->is('sobre') || request()->is('en/sobre');
+    $isSolutionsPage = request()->is('solucoes') || request()->is('en/solucoes');
 
     // URLs base
-    $urlHome     = $base . '/#inicio';
-    $urlAbout    = $base . '/sobre';
-    $urlProjects = $base . '/#projetos';
-    $urlContact  = $base . '/#agendamento';
-    $urlLogo     = $isEn ? '/en' : '/';
+    $urlHome      = $base . '/#inicio';
+    $urlAbout     = $base . '/sobre';
+    $urlSolutions = $base . '/solucoes';
+    $urlProjects  = $base . '/#projetos';
+    $urlContact   = $base . '/#agendamento';
+    $urlLogo      = $isEn ? '/en' : '/';
 
     // Troca de idioma — mantém a página atual
-    $urlSwitchPt = $isAboutPage ? '/sobre' : '/';
-    $urlSwitchEn = $isAboutPage ? '/en/sobre' : '/en';
+    if ($isAboutPage) {
+        $urlSwitchPt = '/sobre';
+        $urlSwitchEn = '/en/sobre';
+    } elseif ($isSolutionsPage) {
+        $urlSwitchPt = '/solucoes';
+        $urlSwitchEn = '/en/solucoes';
+    } else {
+        $urlSwitchPt = '/';
+        $urlSwitchEn = '/en';
+    }
 @endphp
 
 <header class="w-full bg-black/30 border-b border-white/[0.03] backdrop-blur-md sticky top-0 z-50 transition-all duration-300">
@@ -47,6 +57,11 @@
                class="nav-item relative z-10 px-4 py-1.5 rounded-full text-xs font-bold text-zinc-400 hover:text-white transition duration-300"
                data-page="about">
                 {{ __('site.nav_about') }}
+            </a>
+            <a href="{{ $urlSolutions }}"
+               class="nav-item relative z-10 px-4 py-1.5 rounded-full text-xs font-bold text-zinc-400 hover:text-white transition duration-300"
+               data-page="solutions">
+                {{ __('site.nav_solutions') }}
             </a>
             <a href="{{ $urlProjects }}"
                class="nav-item relative z-10 px-4 py-1.5 rounded-full text-xs font-bold text-zinc-400 hover:text-white transition duration-300"
@@ -97,6 +112,7 @@
         <nav class="flex flex-col items-center gap-8 text-center">
             <a href="{{ $urlHome }}" class="mobile-nav-link text-2xl font-bold tracking-wider uppercase text-zinc-500 hover:text-white transition duration-300" style="font-family: 'Orbitron', sans-serif;">{{ __('site.nav_home') }}</a>
             <a href="{{ $urlAbout }}" class="mobile-nav-link text-2xl font-bold tracking-wider uppercase text-zinc-500 hover:text-white transition duration-300" style="font-family: 'Orbitron', sans-serif;">{{ __('site.nav_about') }}</a>
+            <a href="{{ $urlSolutions }}" class="mobile-nav-link text-2xl font-bold tracking-wider uppercase text-zinc-500 hover:text-white transition duration-300" style="font-family: 'Orbitron', sans-serif;">{{ __('site.nav_solutions') }}</a>
             <a href="{{ $urlProjects }}" class="mobile-nav-link text-2xl font-bold tracking-wider uppercase text-zinc-500 hover:text-white transition duration-300" style="font-family: 'Orbitron', sans-serif;">{{ __('site.nav_projects') }}</a>
             <a href="{{ $urlContact }}" class="mobile-nav-link text-2xl font-bold tracking-wider uppercase text-zinc-500 hover:text-white transition duration-300" style="font-family: 'Orbitron', sans-serif;">{{ __('site.nav_contact') }}</a>
 
@@ -116,8 +132,9 @@
 <script>
     (function () {
         const path = window.location.pathname;
-        const isHome = path === '/' || path === '' || path === '/en' || path === '/en/';
-        const isAbout = path === '/sobre' || path === '/en/sobre';
+        const isHome      = path === '/' || path === '' || path === '/en' || path === '/en/';
+        const isAbout     = path === '/sobre' || path === '/en/sobre';
+        const isSolutions = path === '/solucoes' || path === '/en/solucoes';
 
         document.addEventListener('DOMContentLoaded', function () {
             // ============== MOBILE MENU ==============
@@ -181,8 +198,8 @@
                     const anchor = this.getAttribute('data-anchor');
                     const page = this.getAttribute('data-page');
 
-                    // Link "Sobre" — navegação normal entre páginas
-                    if (page === 'about') {
+                    // Páginas independentes (Sobre, Soluções) — navegação normal
+                    if (page === 'about' || page === 'solutions') {
                         moveMarker(this);
                         return; // deixa o navegador seguir o href
                     }
@@ -195,7 +212,7 @@
                             smoothScrollTo(anchor);
                             history.replaceState(null, '', `#${anchor}`);
                         }
-                        // Se NÃO está na home, deixa o navegador seguir o href normalmente (vai para /#anchor)
+                        // Se NÃO está na home, deixa o navegador seguir o href normalmente
                     }
                 });
             });
@@ -205,8 +222,8 @@
                 link.addEventListener('click', function (e) {
                     const href = this.getAttribute('href');
 
-                    // Sobre, contato, etc — deixa navegar normal
-                    if (href.includes('/sobre') || !href.includes('#')) {
+                    // Páginas independentes ou links sem âncora — navega normal
+                    if (href.includes('/sobre') || href.includes('/solucoes') || !href.includes('#')) {
                         toggleMenu();
                         return;
                     }
@@ -230,8 +247,10 @@
                 if (isAbout) {
                     const aboutLink = document.querySelector('.nav-item[data-page="about"]');
                     if (aboutLink) moveMarker(aboutLink);
+                } else if (isSolutions) {
+                    const solLink = document.querySelector('.nav-item[data-page="solutions"]');
+                    if (solLink) moveMarker(solLink);
                 } else if (isHome) {
-                    // Verifica se tem hash na URL
                     const hash = window.location.hash.replace('#', '');
                     if (hash) {
                         const activeLink = document.querySelector(`.nav-item[data-anchor="${hash}"]`);
@@ -241,13 +260,12 @@
                             return;
                         }
                     }
-                    // Default: primeira opção (início)
                     if (navItems.length > 0) moveMarker(navItems[0]);
                 }
             }
             setTimeout(setInitialMarker, 100);
 
-            // ============== SCROLL SPY (destaca seção ativa enquanto rola) ==============
+            // ============== SCROLL SPY ==============
             if (isHome) {
                 const sections = ['inicio', 'projetos', 'agendamento']
                     .map(id => ({ id, el: document.getElementById(id) }))
@@ -260,7 +278,6 @@
                         const scrollY = window.scrollY + 100;
                         let current = 'inicio';
 
-                        // Se está perto do topo
                         if (scrollY < 200) {
                             current = 'inicio';
                         } else {

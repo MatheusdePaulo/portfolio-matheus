@@ -30,9 +30,11 @@
         pointer-events: none;
         z-index: 9999;
         opacity: 0;
-        transition: width 0.2s ease, height 0.2s ease,
-                    background-color 0.2s ease, opacity 0.3s ease;
-        will-change: transform;
+        transform-origin: center center;
+        /* Apenas background-color e opacity usam CSS transition.
+           Posição e scale são animados pelo rAF loop via transform — sem layout recalc. */
+        transition: background-color 0.2s ease, opacity 0.3s ease;
+        will-change: transform, opacity;
     }
 
     body.cursor-ready .cursor-dot {
@@ -54,30 +56,27 @@
 <script>
     (function () {
         /*
-         * Detecção robusta sem dependência de matchMedia:
-         * - window.innerWidth >= 1024  → tela desktop
-         * - !('ontouchstart' in window) → sem suporte a touch (exclui celular, tablet, laptop touch)
-         * Isso garante ativação em desktops puros e fallback seguro (cursor do sistema) para o resto.
+         * Desktop puro: largura >= 1024px e sem suporte a touch.
+         * Cursor do sistema permanece intacto em qualquer outro dispositivo.
          */
         const isDesktop            = window.innerWidth >= 1024 && !('ontouchstart' in window);
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // Fallback garantido: se não for desktop puro, cursor do sistema permanece intacto
         if (!isDesktop || prefersReducedMotion) return;
 
         const cursor  = document.getElementById('customCursor');
-        const maxDots = 12;
+        const maxDots = 10; // 10 dots: rastro visualmente idêntico, menos elementos no rAF
         const dots    = [];
 
-        // .parallax-layer já existem no DOM (partial incluído ao final do body)
         const layers = document.querySelectorAll('.parallax-layer');
 
         let mouseX = 0, mouseY = 0;
         let cursorX = 0, cursorY = 0;
+        // Scale lerpeado — substitui width/height no hover (sem layout recalc, GPU-accelerated)
+        let targetScale = 1, cursorScale = 1;
         let layerOffsetX = 0, layerOffsetY = 0;
         let animationId  = null;
 
-        // Cria pontos do rastro — ficam com display:none até cursor-ready
         for (var i = 0; i < maxDots; i++) {
             var dot = document.createElement('div');
             dot.className = 'cursor-dot';
@@ -94,13 +93,17 @@
         }
 
         function animateCursor() {
-            // Lerp suave do anel (0.2 = fluido sem delay excessivo)
-            cursorX += (mouseX - cursorX) * 0.2;
-            cursorY += (mouseY - cursorY) * 0.2;
-            cursor.style.transform =
-                'translate3d(' + (cursorX - 16) + 'px, ' + (cursorY - 16) + 'px, 0)';
+            // Lerp do anel — 0.25 é mais responsivo que 0.20 sem perder suavidade
+            cursorX += (mouseX - cursorX) * 0.25;
+            cursorY += (mouseY - cursorY) * 0.25;
 
-            // Rastro em cadeia: cada ponto persegue o anterior
+            // Lerp do scale (hover expand) — feito aqui para não disparar layout recalc via CSS
+            cursorScale += (targetScale - cursorScale) * 0.15;
+
+            cursor.style.transform =
+                'translate3d(' + (cursorX - 16) + 'px, ' + (cursorY - 16) + 'px, 0) scale(' + cursorScale.toFixed(3) + ')';
+
+            // Rastro em cadeia: cada dot persegue o anterior
             var targetX = mouseX, targetY = mouseY;
             dots.forEach(function (dot, index) {
                 dot.x += (targetX - dot.x) * 0.35;
@@ -113,6 +116,7 @@
                 targetY = dot.y;
             });
 
+            // Parallax sincronizado no mesmo frame — zero listeners extras de mousemove
             updateParallax();
             animationId = requestAnimationFrame(animateCursor);
         }
@@ -124,19 +128,18 @@
             layerOffsetY = (mouseY / window.innerHeight) - 0.5;
         }
 
-        // PRIMEIRO MOUSEMOVE: snap para coordenadas reais antes de revelar qualquer coisa.
-        // Evita o artefato do "cursor preso no canto superior esquerdo" no carregamento.
+        // PRIMEIRO MOUSEMOVE: snap para coordenadas reais antes de revelar o cursor.
         function onFirstMove(e) {
             mouseX       = e.clientX;
             mouseY       = e.clientY;
             layerOffsetX = (mouseX / window.innerWidth)  - 0.5;
             layerOffsetY = (mouseY / window.innerHeight) - 0.5;
 
-            // Pré-posiciona tudo na localização real do mouse enquanto ainda invisível
             cursorX = mouseX;
             cursorY = mouseY;
+            cursorScale = 1;
             cursor.style.transform =
-                'translate3d(' + (cursorX - 16) + 'px, ' + (cursorY - 16) + 'px, 0)';
+                'translate3d(' + (cursorX - 16) + 'px, ' + (cursorY - 16) + 'px, 0) scale(1)';
 
             dots.forEach(function (dot) {
                 dot.x = mouseX;
@@ -146,28 +149,23 @@
                 dot.el.style.opacity = '0';
             });
 
-            // Ativa cursor-ready: oculta cursor do sistema, exibe cursor customizado no DOM
             document.body.classList.add('cursor-ready');
 
-            // Fade-in do anel no próximo frame (display:block precisa ser processado primeiro)
             requestAnimationFrame(function () {
                 cursor.style.opacity = '1';
                 if (!animationId) animationId = requestAnimationFrame(animateCursor);
             });
 
-            // Troca para listener leve contínuo
             window.addEventListener('mousemove', onContinuousMove, { passive: true });
         }
 
-        // once:true → listener se remove automaticamente após o primeiro disparo
         window.addEventListener('mousemove', onFirstMove, { passive: true, once: true });
 
-        // Hover: expande o anel ao passar sobre links e botões
+        // Hover expand via scale — nenhum width/height alterado, zero layout recalc
         document.addEventListener('mouseover', function (e) {
             if (!document.body.classList.contains('cursor-ready')) return;
             if (e.target.closest('a, button, [role="button"]')) {
-                cursor.style.width           = '45px';
-                cursor.style.height          = '45px';
+                targetScale = 1.4;
                 cursor.style.backgroundColor = 'rgba(168, 85, 247, 0.1)';
             }
         }, { passive: true });
@@ -175,8 +173,7 @@
         document.addEventListener('mouseout', function (e) {
             if (!document.body.classList.contains('cursor-ready')) return;
             if (e.target.closest('a, button, [role="button"]')) {
-                cursor.style.width           = '32px';
-                cursor.style.height          = '32px';
+                targetScale = 1.0;
                 cursor.style.backgroundColor = 'transparent';
             }
         }, { passive: true });

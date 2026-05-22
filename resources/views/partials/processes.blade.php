@@ -50,7 +50,7 @@
             </div>
         </div>
 
-        <div class="relative order-first lg:order-none flex justify-center items-center h-full min-h-[460px]">
+        <div class="hidden lg:flex relative order-first lg:order-none justify-center items-center h-full min-h-[460px]">
             <div class="absolute inset-0 bg-radial-gradient from-purple-500/5 to-transparent rounded-full blur-3xl"></div>
             <div class="w-full max-w-[690px] relative z-10 animate-orbital-float">
                 <img src="{{ asset('imagens/perfil.png') }}"
@@ -63,12 +63,12 @@
 
             <div class="relative group pt-6 scroll-reveal-delay-1">
                 <span class="absolute -top-8 right-0 text-7xl font-black text-purple-500/[0.08] select-none uppercase tracking-tighter" style="font-family: 'Orbitron', sans-serif;">02</span>
-                <div class="space-y-3 lg:text-right relative z-10">
+                <div class="space-y-3 text-right relative z-10">
                     <h3 class="text-xl font-bold text-white uppercase tracking-tight" style="font-family: 'Orbitron', sans-serif;">{{ __('site.processes_step2_title') }}</h3>
                     <p class="text-zinc-400 text-sm leading-relaxed">
                         {{ __('site.processes_step2_desc') }}
                     </p>
-                    <div class="flex flex-wrap lg:justify-end gap-2 pt-2">
+                    <div class="flex flex-wrap justify-end gap-2 pt-2">
                         <span class="text-[9px] font-bold px-2 py-0.5 rounded bg-purple-500/10 border border-purple-500/20 text-purple-300 uppercase">{{ __('site.processes_tag2_design') }}</span>
                         <span class="text-[9px] font-bold px-2 py-0.5 rounded bg-purple-500/10 border border-purple-500/20 text-purple-300 uppercase">{{ __('site.processes_tag2_validacao') }}</span>
                         <span class="text-[9px] font-bold px-2 py-0.5 rounded bg-purple-500/10 border border-purple-500/20 text-purple-300 uppercase">{{ __('site.processes_tag2_nav') }}</span>
@@ -78,12 +78,12 @@
 
             <div class="relative group pt-14 scroll-reveal-delay-2">
                 <span class="absolute top-2 right-0 text-7xl font-black text-purple-500/[0.08] select-none uppercase tracking-tighter" style="font-family: 'Orbitron', sans-serif;">04</span>
-                <div class="space-y-3 lg:text-right relative z-10">
+                <div class="space-y-3 text-right relative z-10">
                     <h3 class="text-xl font-bold text-white uppercase tracking-tight" style="font-family: 'Orbitron', sans-serif;">{{ __('site.processes_step4_title') }}</h3>
                     <p class="text-zinc-400 text-sm leading-relaxed">
                         {{ __('site.processes_step4_desc') }}
                     </p>
-                    <div class="flex flex-wrap lg:justify-end gap-2 pt-2">
+                    <div class="flex flex-wrap justify-end gap-2 pt-2">
                         <span class="text-[9px] font-bold px-2 py-0.5 rounded bg-purple-500/10 border border-purple-500/20 text-purple-300 uppercase">{{ __('site.processes_tag4_publicacao') }}</span>
                         <span class="text-[9px] font-bold px-2 py-0.5 rounded bg-purple-500/10 border border-purple-500/20 text-purple-300 uppercase">{{ __('site.processes_tag4_otimizacao') }}</span>
                         <span class="text-[9px] font-bold px-2 py-0.5 rounded bg-purple-500/10 border border-purple-500/20 text-purple-300 uppercase">{{ __('site.processes_tag4_velocidade') }}</span>

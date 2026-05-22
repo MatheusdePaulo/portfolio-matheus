@@ -27,3 +27,15 @@ Route::get('/sobre', function () {
     App::setLocale($locale);
     return view('sobre');
 });
+
+Route::get('/solucoes', function () {
+    $locale = session('locale', 'pt');
+    App::setLocale($locale);
+    return view('solucoes');
+});
+
+Route::get('/en/solucoes', function () {
+    App::setLocale('en');
+    session(['locale' => 'en']);
+    return view('solucoes');
+});

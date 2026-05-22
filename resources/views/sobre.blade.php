@@ -65,7 +65,7 @@
             <div class="w-full max-w-md relative transform transition duration-700 hover:scale-[1.01] flex flex-col items-center lg:items-start">
 
                 <div class="fade-bottom-mask w-full">
-                    <img src="{{ asset('imagens/perfil.png') }}" alt="Matheus de Paulo" class="w-full h-auto object-contain filter drop-shadow-[0_10px_25px_rgba(168,85,247,0.15)]">
+                    <img src="{{ asset('imagens/perfil-ux.png') }}" alt="Matheus de Paulo" class="w-full h-auto object-contain filter drop-shadow-[0_10px_25px_rgba(168,85,247,0.15)]">
                 </div>
 
                 <div class="absolute -bottom-12 lg:-bottom-6 lg:-left-16 z-20 flex gap-4 backdrop-blur-md bg-zinc-950/70 border border-white/[0.06] p-4 rounded-2xl shadow-[0_25px_50px_rgba(0,0,0,0.8)]">
