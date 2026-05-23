@@ -25,7 +25,7 @@
         top: 0; left: 0;
         width: 32px;
         height: 32px;
-        border: 2px solid rgba(168, 85, 247, 0.5);
+        border: 2px solid rgba(168, 85, 247, 0.6);
         border-radius: 50%;
         pointer-events: none;
         z-index: 9999;
@@ -59,13 +59,13 @@
          * Desktop puro: largura >= 1024px e sem suporte a touch.
          * Cursor do sistema permanece intacto em qualquer outro dispositivo.
          */
-        const isDesktop            = window.innerWidth >= 1024 && !('ontouchstart' in window);
+        const isDesktop            = window.innerWidth >= 1024 && !('ontouchstart' in window) && window.matchMedia('(hover: hover)').matches;
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         if (!isDesktop || prefersReducedMotion) return;
 
         const cursor  = document.getElementById('customCursor');
-        const maxDots = 10; // 10 dots: rastro visualmente idêntico, menos elementos no rAF
+        const maxDots = 8; // 8 dots: rastro preservado, menos elementos por frame (melhor perf em /solucoes)
         const dots    = [];
 
         const layers = document.querySelectorAll('.parallax-layer');
@@ -93,12 +93,12 @@
         }
 
         function animateCursor() {
-            // Lerp do anel — 0.25 é mais responsivo que 0.20 sem perder suavidade
-            cursorX += (mouseX - cursorX) * 0.25;
-            cursorY += (mouseY - cursorY) * 0.25;
+            // Lerp do anel — 0.38 elimina sensação de lag mantendo suavidade
+            cursorX += (mouseX - cursorX) * 0.38;
+            cursorY += (mouseY - cursorY) * 0.38;
 
             // Lerp do scale (hover expand) — feito aqui para não disparar layout recalc via CSS
-            cursorScale += (targetScale - cursorScale) * 0.15;
+            cursorScale += (targetScale - cursorScale) * 0.22;
 
             cursor.style.transform =
                 'translate3d(' + (cursorX - 16) + 'px, ' + (cursorY - 16) + 'px, 0) scale(' + cursorScale.toFixed(3) + ')';

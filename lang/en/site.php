@@ -51,12 +51,12 @@ return [
     'processes_tag4_velocidade' => 'Speed',
 
 
-    // Projects (cards)
-    'projects_tag'        => 'Portfolio',
-    'projects_title'      => "Solutions that\nGenerate Results",
-    'projects_desc'       => 'Each project is designed with total focus on usability, visual authority and strategies built to convert visitors into buying clients.',
+    // Projects (cases)
+    'projects_tag'        => 'Featured Cases',
+    'projects_title'      => "Real Systems\nin Production",
+    'projects_desc'       => 'Not mockups. Digital ecosystems running in production, generating results for real businesses.',
     'projects_featured'   => '🔥 Featured Project',
-    'projects_cta'        => 'See Strategy →',
+    'projects_cta'        => 'View full case →',
 
     'projects_p1_title'    => 'Nathan do Corte Barbershop',
     'projects_p1_subtitle' => 'Professional Scheduling & Online Flow System.',

@@ -50,12 +50,12 @@ return [
     // PT
     'nav_solutions' => 'Soluções',
 
-    // Projects (cards)
-    'projects_tag'        => 'Portfólio',
-    'projects_title'      => "Soluções que\nGeram Resultados",
-    'projects_desc'       => 'Cada projeto é desenhado com foco total em usabilidade, autoridade visual e estratégias feitas para converter visitantes em clientes compradores.',
+    // Projects (cases)
+    'projects_tag'        => 'Cases de Destaque',
+    'projects_title'      => "Sistemas Reais\nem Produção",
+    'projects_desc'       => 'Não são mockups. São ecossistemas digitais rodando em produção, gerando resultado para negócios reais.',
     'projects_featured'   => '🔥 Projeto em Destaque',
-    'projects_cta'        => 'Conhecer Estratégia →',
+    'projects_cta'        => 'Ver case completo →',
 
     'projects_p1_title'    => 'Barbearia do Nathan do Corte',
     'projects_p1_subtitle' => 'Sistema Profissional de Agendamento e Fluxo Online.',
