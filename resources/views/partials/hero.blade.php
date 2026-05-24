@@ -197,10 +197,10 @@
             </div>
 
             <div class="flex flex-wrap items-center gap-4 pt-1 justify-center lg:justify-start">
-                <a href="#projetos" class="btn-primary">
+                <a href="#agendamento" class="btn-primary">
                     {{ __('site.hero_btn_projects') }} <span class="arrow">→</span>
                 </a>
-                <a href="#agendamento" class="btn-secondary">
+                <a href="{{ app()->getLocale() === 'en' ? '/en/solucoes' : '/solucoes' }}" class="btn-secondary">
                     {{ __('site.hero_btn_contact') }}
                 </a>
             </div>

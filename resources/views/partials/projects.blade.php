@@ -263,79 +263,29 @@
         </div>
     </div>
 
-    {{-- ── Secondary cases grid ────────────────────────────── --}}
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-
-        {{-- Case 02: Plataforma Blindada --}}
-        <div class="case-card case-reveal case-reveal--d1"
-             role="button" tabindex="0"
-             onclick="openProjectModal('plataforma-blindada')"
-             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('plataforma-blindada')}">
-
-            <div class="case-card__visual">
-                <img src="{{ asset('imagens/blindada.webp') }}" alt="{{ __('site.projects_p4_title') }}" style="object-position: center center;">
-                <span class="case-card__num">02</span>
-            </div>
-
-            <div class="case-card__content">
-                <span class="case-card__tag">{{ __('site.projects_p4_tag') }}</span>
-                <h3 class="case-card__title">{{ __('site.projects_p4_title') }}</h3>
-                <p class="case-card__subtitle">{{ __('site.projects_p4_subtitle') }}</p>
-                <p class="case-card__desc">
-                    {{ app()->getLocale() === 'en'
-                        ? 'Native MVC architecture with multi-layer encryption to protect sensitive corporate data with maximum performance and zero vulnerabilities.'
-                        : 'Arquitetura MVC nativa com criptografia multicamadas para proteger dados sensíveis corporativos com máxima performance e zero brechas.' }}
-                </p>
-                <div class="flex flex-wrap gap-1.5 mt-1">
-                    <span class="case-pill">MVC Nativo</span>
-                    <span class="case-pill">{{ app()->getLocale() === 'en' ? 'Encryption' : 'Criptografia' }}</span>
-                    <span class="case-pill">{{ app()->getLocale() === 'en' ? 'High Performance' : 'Alta Performance' }}</span>
-                </div>
-                <div class="case-card__footer">
-                    <span class="case-card__cta">
-                        {{ app()->getLocale() === 'en' ? 'View case' : 'Ver case' }}
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                    </span>
-                    <span class="text-zinc-700 text-[10px] font-bold uppercase tracking-wider" style="font-family: 'Orbitron', sans-serif;">Case 02</span>
-                </div>
-            </div>
+    {{-- ── Mini metrics strip below the spotlight ────────── --}}
+    <div class="case-reveal case-reveal--d1 mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
+        @php
+        $metrics = app()->getLocale() === 'en' ? [
+            ['value' => '−40%',  'label' => 'No-show Rate',         'color' => 'text-emerald-400'],
+            ['value' => '24h',   'label' => 'Automated Scheduling', 'color' => 'text-purple-400'],
+            ['value' => '< 45s', 'label' => 'Client Booking Time',  'color' => 'text-indigo-400'],
+            ['value' => '+3mo',  'label' => 'Live in Production',   'color' => 'text-emerald-400'],
+        ] : [
+            ['value' => '−40%',  'label' => 'Taxa de No-show',    'color' => 'text-emerald-400'],
+            ['value' => '24h',   'label' => 'Agenda Automatizada', 'color' => 'text-purple-400'],
+            ['value' => '< 45s', 'label' => 'Tempo de Agendamento','color' => 'text-indigo-400'],
+            ['value' => '+3mo',  'label' => 'Em Operação',         'color' => 'text-emerald-400'],
+        ];
+        @endphp
+        @foreach($metrics as $m)
+        <div class="rounded-2xl border border-white/[0.05] bg-zinc-900/40 px-5 py-4 flex flex-col gap-1 select-none
+                    hover:border-purple-500/20 hover:bg-zinc-900/60 transition-all duration-300">
+            <div class="font-black text-2xl leading-none {{ $m['color'] }}"
+                 style="font-family: 'Orbitron', sans-serif;">{{ $m['value'] }}</div>
+            <div class="text-[10px] font-bold uppercase tracking-widest text-zinc-500">{{ $m['label'] }}</div>
         </div>
-
-        {{-- Case 03: AutoAI Classifier --}}
-        <div class="case-card case-reveal case-reveal--d2"
-             role="button" tabindex="0"
-             onclick="openProjectModal('autoai-classifier')"
-             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('autoai-classifier')}">
-
-            <div class="case-card__visual">
-                <img src="{{ asset('imagens/AutoAi.png') }}" alt="{{ __('site.projects_p2_title') }}" style="object-position: center center;">
-                <span class="case-card__num">03</span>
-            </div>
-
-            <div class="case-card__content">
-                <span class="case-card__tag">{{ __('site.projects_p2_tag') }}</span>
-                <h3 class="case-card__title">{{ __('site.projects_p2_title') }}</h3>
-                <p class="case-card__subtitle">{{ __('site.projects_p2_subtitle') }}</p>
-                <p class="case-card__desc">
-                    {{ app()->getLocale() === 'en'
-                        ? 'Classifies and generates reply drafts for incoming messages in real time, cutting commercial response time by up to 80%.'
-                        : 'Classifica e gera minutas de resposta para mensagens recebidas em tempo real, cortando o tempo de retorno comercial em até 80%.' }}
-                </p>
-                <div class="flex flex-wrap gap-1.5 mt-1">
-                    <span class="case-pill">NLP / IA</span>
-                    <span class="case-pill">Cloud Deploy</span>
-                    <span class="case-pill">−80% {{ app()->getLocale() === 'en' ? 'Response Time' : 'Tempo' }}</span>
-                </div>
-                <div class="case-card__footer">
-                    <span class="case-card__cta">
-                        {{ app()->getLocale() === 'en' ? 'View case' : 'Ver case' }}
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                    </span>
-                    <span class="text-zinc-700 text-[10px] font-bold uppercase tracking-wider" style="font-family: 'Orbitron', sans-serif;">Case 03</span>
-                </div>
-            </div>
-        </div>
-
+        @endforeach
     </div>
 
 </section>
@@ -439,54 +389,6 @@
                     { num: '04', name: 'Infraestrutura & Deploy',  desc: 'Configuração de servidores de alta performance, testes rigorosos de estabilidade mobile e publicação oficial da plataforma.' }
                 ]
             },
-            'autoai-classifier': {
-                title:    @json(__('site.projects_p2_title')),
-                subtitle: @json(__('site.projects_p2_subtitle')),
-                tag:      @json(__('site.projects_p2_tag')),
-                liveUrl:  'https://huggingface.co/spaces/matheusdepaulo/AutoAI-Classifier',
-                gitUrl:   'https://github.com/matheusdepaulo/autoai-email-classifier',
-                pain: locale === 'en'
-                    ? 'Sales teams lost contract closing time because inboxes got overcrowded, delaying hot lead responses by hours due to heavy manual triage.'
-                    : 'Setores comerciais perdiam o tempo de fechamento de contratos porque as caixas de entrada ficavam superlotadas, atrasando o retorno de leads quentes por horas devido à triagem manual pesada.',
-                solution: locale === 'en'
-                    ? 'We integrated smart models that immediately classify incoming messages and generate ready reply drafts, cutting admin response time by up to 80%.'
-                    : 'Integramos modelos inteligentes que classificam mensagens imediatamente e geram minutas prontas de resposta, cortando o tempo de resposta administrativa em até 80%.',
-                steps: locale === 'en' ? [
-                    { num: '01', name: 'Briefing & Intentions', desc: 'We aligned triage goals and mapped the main message categories overloading the commercial operation.' },
-                    { num: '02', name: 'Prompt Design',         desc: 'Structuring AI rules and flows, validating contextual response drafts before development.' },
-                    { num: '03', name: 'Panel & Integration',   desc: 'Building the admin interface with automated rules so the team can manage and validate returns in seconds.' },
-                    { num: '04', name: 'Cloud & Deploy',        desc: 'High-availability cloud hosting on Hugging Face Spaces, ensuring fast processing and reliable delivery.' }
-                ] : [
-                    { num: '01', name: 'Briefing & Intenções',  desc: 'Alinhamos os objetivos de triagem e mapeamos as principais categorias de mensagens que sobrecarregavam a operação comercial.' },
-                    { num: '02', name: 'Design de Prompts',     desc: 'Estruturação das regras e fluxos de IA, validando as minutas de resposta contextual antes do desenvolvimento.' },
-                    { num: '03', name: 'Painel & Integração',   desc: 'Construção da interface administrativa com regras automatizadas para gerenciar e validar retornos em segundos.' },
-                    { num: '04', name: 'Cloud & Deploy',        desc: 'Hospedagem em nuvem de alta disponibilidade (Hugging Face Spaces), garantindo processamento rápido e entrega confiável.' }
-                ]
-            },
-            'plataforma-blindada': {
-                title:    @json(__('site.projects_p4_title')),
-                subtitle: @json(__('site.projects_p4_subtitle')),
-                tag:      @json(__('site.projects_p4_tag')),
-                liveUrl:  '#agendamento',
-                gitUrl:   'https://github.com/matheusdepaulo/plataforma-mvc-nativa',
-                pain: locale === 'en'
-                    ? 'Companies suffered from slow panels and were exposed to vulnerabilities on shared servers that put confidential revenue reports and client data at risk.'
-                    : 'Empresas sofriam com painéis lentos e ficavam expostas a vulnerabilidades em servidores compartilhados que colocavam em risco relatórios financeiros e dados de clientes.',
-                solution: locale === 'en'
-                    ? 'Development of a stable platform with strict security architecture, ensuring legal protection, fast reports and zero breach windows.'
-                    : 'Desenvolvimento de plataforma estável em arquitetura de segurança rígida, garantindo proteção jurídica, relatórios rápidos e zero brechas para invasões.',
-                steps: locale === 'en' ? [
-                    { num: '01', name: 'Risk Briefing',       desc: 'We mapped critical points of the old database and the main management report demands the company needed.' },
-                    { num: '02', name: 'Operational Design',  desc: 'Creation of a clean admin interface in Figma so managers can handle data securely without complexity.' },
-                    { num: '03', name: 'Shielding & Backend', desc: 'Back-end in native MVC architecture with multi-layer encryption and ultra-fast report generation.' },
-                    { num: '04', name: 'Deploy & Audit',      desc: 'Hosting in an isolated, secure environment with automated backup routines and stress tests against intrusions.' }
-                ] : [
-                    { num: '01', name: 'Briefing de Riscos',    desc: 'Mapeamos os pontos críticos do banco de dados e as principais demandas de relatórios gerenciais que a empresa precisava.' },
-                    { num: '02', name: 'Design Operacional',    desc: 'Criação de interface administrativa limpa no Figma para que gestores gerenciem dados de forma segura sem complexidade.' },
-                    { num: '03', name: 'Blindagem & Back-end',  desc: 'Desenvolvimento back-end em arquitetura MVC nativa com criptografia multicamadas e relatórios ultra-rápidos.' },
-                    { num: '04', name: 'Deploy & Auditoria',    desc: 'Hospedagem em ambiente isolado e seguro com rotinas de backup automatizadas e testes de estresse contra invasões.' }
-                ]
-            }
         };
 
         // ── Modal open/close ────────────────────────────────────

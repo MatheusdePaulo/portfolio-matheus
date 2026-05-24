@@ -8,16 +8,16 @@ return [
     'nav_cta'     => 'Get in touch',
 
     // Hero
-    'hero_tag'       => 'Premium Web Development',
-    'hero_subtitle'  => 'I turn local businesses into digital references.',
-    'hero_desc'      => 'Websites that build credibility, attract clients and strengthen your brand - from design to delivery, hassle-free.',
+    'hero_tag'       => 'Premium Systems Development',
+    'hero_subtitle'  => 'Modern systems for businesses that want to grow digitally.',
+    'hero_desc'      => 'Landing pages, management systems, automation and dashboards — custom-built for your business.',
     'hero_available' => 'Available for new projects',
-    'hero_btn_projects' => 'View Projects',
-    'hero_btn_contact'  => 'Schedule a Call',
-    'hero_badge_1' => 'Professional Sites',
-    'hero_badge_2' => 'Premium Design',
-    'hero_badge_3' => 'Fast Delivery',
-    'hero_badge_4' => 'Support Included',
+    'hero_btn_projects' => 'Request a Quote',
+    'hero_btn_contact'  => 'View Solutions',
+    'hero_badge_1' => 'Management Systems',
+    'hero_badge_2' => 'Landing Pages',
+    'hero_badge_3' => 'Automation',
+    'hero_badge_4' => 'PIX Integration',
     'hero_years'     => 'Years',
     'hero_projects'  => 'Projects',
     'hero_delivered' => 'Delivered',
@@ -52,9 +52,9 @@ return [
 
 
     // Projects (cases)
-    'projects_tag'        => 'Featured Cases',
-    'projects_title'      => "Real Systems\nin Production",
-    'projects_desc'       => 'Not mockups. Digital ecosystems running in production, generating results for real businesses.',
+    'projects_tag'        => 'Featured Case',
+    'projects_title'      => "Real Project\nin Production",
+    'projects_desc'       => 'Not a mockup. A digital ecosystem running in production, generating real results for a real business.',
     'projects_featured'   => '🔥 Featured Project',
     'projects_cta'        => 'View full case →',
 

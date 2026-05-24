@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -197,11 +197,14 @@
 
 @include('partials.processes')
 
+@include('partials.solucoes-section')
+
+@include('partials.cta-final')
+
 @include('partials.contact')
 
 @include('partials.footer')
 
-@include('partials.custom-cursor')
 </body>
 
 </html>

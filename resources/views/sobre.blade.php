@@ -29,7 +29,7 @@
             animation-timing-function: linear; animation-iteration-count: infinite;
             will-change: top, transform;
         }
-        .parallax-layer { will-change: transform; }
+        .parallax-layer { /* static decorative elements */ }
         .code-symbol { font-family: 'Space Mono', monospace; user-select: none; }
         .fade-bottom-mask {
             mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
@@ -118,6 +118,5 @@
 @include('partials.footer')
 
 
-@include('partials.custom-cursor')
 </body>
 </html>

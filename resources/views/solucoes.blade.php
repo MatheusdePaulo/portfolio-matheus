@@ -29,7 +29,7 @@
             animation-timing-function: linear; animation-iteration-count: infinite;
             will-change: top, transform;
         }
-        .parallax-layer { will-change: transform; }
+        .parallax-layer { /* static decorative elements */ }
         .code-symbol { font-family: 'Space Mono', monospace; user-select: none; }
 
         /* ============ ANIMAÇÕES DE SCROLL ============ */
@@ -876,6 +876,5 @@
     })();
 </script>
 
-@include('partials.custom-cursor')
 </body>
 </html>

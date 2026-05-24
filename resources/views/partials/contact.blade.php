@@ -1,4 +1,18 @@
-<section id="agendamento" class="w-full max-w-7xl mx-auto px-6 py-24 relative z-10 overflow-hidden text-white font-sans">
+{{-- Divisor cinematográfico entre CTA final e formulário --}}
+<div class="w-full relative z-10 overflow-hidden" aria-hidden="true">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center gap-4">
+            <div class="flex-1 h-px bg-gradient-to-r from-transparent to-purple-500/20"></div>
+            <div class="flex items-center gap-2 py-3 px-5 rounded-full border border-purple-500/15 bg-purple-500/[0.04]">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500" style="font-family:'Orbitron',sans-serif;">{{ app()->getLocale() === 'en' ? 'New slots open' : 'Vagas abertas' }}</span>
+            </div>
+            <div class="flex-1 h-px bg-gradient-to-l from-transparent to-purple-500/20"></div>
+        </div>
+    </div>
+</div>
+
+<section id="agendamento" class="w-full max-w-7xl mx-auto px-6 pt-12 pb-24 relative z-10 overflow-hidden text-white font-sans">
 
     <div class="absolute -top-10 right-0 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px] pointer-events-none"></div>
     <div class="absolute -bottom-20 -left-20 w-96 h-96 bg-purple-600/5 rounded-full blur-[120px] pointer-events-none"></div>

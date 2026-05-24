@@ -8,16 +8,16 @@ return [
     'nav_cta'     => 'Entrar em contato',
 
     // Hero
-    'hero_tag'       => 'Desenvolvimento Web Premium',
-    'hero_subtitle'  => 'Transformo negócios locais em referências digitais.',
-    'hero_desc'      => 'Sites que geram credibilidade, atraem clientes e fortalecem a sua marca - do design à entrega, sem complicação.',
+    'hero_tag'       => 'Desenvolvimento de Sistemas Premium',
+    'hero_subtitle'  => 'Sistemas modernos para empresas que querem crescer no digital.',
+    'hero_desc'      => 'Landing pages, sistemas de gestão, automações e dashboards — desenvolvidos sob medida para o seu negócio.',
     'hero_available' => 'Disponível para novos projetos',
-    'hero_btn_projects' => 'Ver Projetos',
-    'hero_btn_contact'  => 'Entrar em contato',
-    'hero_badge_1' => 'Sites Profissionais',
-    'hero_badge_2' => 'Design Premium',
-    'hero_badge_3' => 'Entrega Rápida',
-    'hero_badge_4' => 'Suporte Incluso',
+    'hero_btn_projects' => 'Solicitar Orçamento',
+    'hero_btn_contact'  => 'Ver Soluções',
+    'hero_badge_1' => 'Sistemas de Gestão',
+    'hero_badge_2' => 'Landing Pages',
+    'hero_badge_3' => 'Automação',
+    'hero_badge_4' => 'Integração PIX',
     'hero_years'     => 'Anos',
     'hero_projects'  => 'Projetos',
     'hero_delivered' => 'Entregues',
@@ -51,9 +51,9 @@ return [
     'nav_solutions' => 'Soluções',
 
     // Projects (cases)
-    'projects_tag'        => 'Cases de Destaque',
-    'projects_title'      => "Sistemas Reais\nem Produção",
-    'projects_desc'       => 'Não são mockups. São ecossistemas digitais rodando em produção, gerando resultado para negócios reais.',
+    'projects_tag'        => 'Case em Destaque',
+    'projects_title'      => "Projeto Real\nem Operação",
+    'projects_desc'       => 'Não é mockup. É um ecossistema digital rodando em produção, gerando resultado real para um negócio real.',
     'projects_featured'   => '🔥 Projeto em Destaque',
     'projects_cta'        => 'Ver case completo →',
 
