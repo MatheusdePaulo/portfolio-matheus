@@ -10,7 +10,7 @@ return [
     // Hero
     'hero_tag'       => 'Desenvolvimento de Sistemas Premium',
     'hero_subtitle'  => 'Sistemas modernos para empresas que querem crescer no digital.',
-    'hero_desc'      => 'Landing pages, sistemas de gestão, automações e dashboards — desenvolvidos sob medida para o seu negócio.',
+    'hero_desc'      => 'Landing pages, sistemas de gestão, automações e dashboards desenvolvidos sob medida para o seu negócio.',
     'hero_available' => 'Disponível para novos projetos',
     'hero_btn_projects' => 'Solicitar Orçamento',
     'hero_btn_contact'  => 'Ver Soluções',
@@ -58,7 +58,7 @@ return [
     'projects_cta'        => 'Ver case completo →',
 
     'projects_p1_title'    => 'Barbearia do Nathan do Corte',
-    'projects_p1_subtitle' => 'Sistema Profissional de Agendamento e Fluxo Online.',
+    'projects_p1_subtitle' => 'Ecossistema Completo de Gestão Comercial. Operando 24h.',
     'projects_p1_desc'     => 'Desenvolvido sob medida para otimizar o atendimento. Elimina gargalos de mensagens manuais, automatiza o controle de horários em tempo real e entrega uma experiência de agendamento em segundos.',
 
     'projects_p2_tag'      => 'Inteligência Artificial',
@@ -79,17 +79,17 @@ return [
 // Modal
     'modal_live'           => '🌐 Acessar Site Online',
     'modal_git'            => '📁 Ver Código no GitHub',
-    'modal_pain_title'     => '🚨 O Problema (A Dor)',
-    'modal_solution_title' => '💡 A Solução Estratégica',
-    'modal_steps_title'    => 'Esteira de Engenharia (Como foi feito)',
-    'modal_admin_title'    => '🎛️ Engenharia e Inteligência de Gestão (Painel Interno)',
+    'modal_pain_title'     => 'O Cenário Real: Antes do Sistema',
+    'modal_solution_title' => 'A Transformação Entregue',
+    'modal_steps_title'    => 'Como Foi Construído',
+    'modal_admin_title'    => 'O Sistema em Ação',
     'modal_admin_sub'      => 'A engrenagem estratégica desenvolvida para escalar o faturamento e reter clientes de forma automática.',
     'modal_admin_desc'     => 'Mais do que um design externo de alta conversão, o projeto conta com um ecossistema completo de administração. Ele entrega controle estratégico absoluto sobre o negócio, trazendo inteligência de dados e gatilhos automatizados de marketing:',
-    'modal_final_cta'      => 'Preciso de uma solução assim no meu negócio',
+    'modal_final_cta'      => 'Quero um sistema assim para o meu negócio',
 
 
     // Sobre (página)
-    'about_page_title'   => 'Sobre — Matheus de Paulo',
+    'about_page_title'   => 'Sobre | Matheus de Paulo',
     'about_exp_label'    => 'Experiência',
     'about_exp_value'    => '+2 Anos',
     'about_sys_label'    => 'Sistemas',
@@ -97,7 +97,7 @@ return [
     'about_h1_p1'        => 'Estratégia,',
     'about_h1_p2'        => 'Design & Código',
     'about_p1' => 'Me chamo Matheus de Paulo. Minha jornada no desenvolvimento de sites premium nasceu de uma constatação clara: a grande maioria das empresas e profissionais locais possui serviços excepcionais no mundo físico, mas falha drasticamente em transmitir essa mesma autoridade e segurança na internet.',
-    'about_p2' => 'Não sou o freelancer comum que apenas entrega um site genérico feito em massa e some. Eu atuo desenhando canais de vendas sob medida e páginas de alta conversão projetadas para colocar mais dinheiro no seu bolso — seja automatizando o agendamento de clientes para sua barbearia ou clínica, ou criando um cardápio digital irresistível para seu restaurante.',
+    'about_p2' => 'Não sou o freelancer comum que apenas entrega um site genérico feito em massa e some. Eu atuo desenhando canais de vendas sob medida e páginas de alta conversão projetadas para colocar mais dinheiro no seu bolso, seja automatizando o agendamento de clientes para sua barbearia ou clínica, ou criando um cardápio digital irresistível para seu restaurante.',
     'about_p3' => 'Através de um modelo de estúdio exclusivo, cuido de cada detalhe do seu projeto: estudo os gargalos que estão fazendo você perder vendas hoje, planejo o design ideal para valorizar a sua marca e construo uma experiência mobile impecável. <strong>Aqui, cada projeto é tratado como uma obra única: sua plataforma é planejada e codificada do zero absoluta, garantindo que ninguém no mercado tenha um sistema sequer parecido com o seu.</strong>',
     'about_quote' => '"O meu foco é entregar exclusividade total. Rejeito soluções genéricas ou cópias prontas porque o seu negócio merece uma identidade digital única, com autoridade e tecnologia que ninguém mais conseguirá replicar."',
     'about_cta' => 'Construir minha presença digital premium →',
@@ -146,8 +146,8 @@ return [
 
 // Freelancer (atual)
     'exp0_role'    => 'Desenvolvedor Web Freelancer',
-    'exp0_period'  => 'Jan 2026 — Presente',
-    'exp0_company' => 'Matheus de Paulo — Studio',
+    'exp0_period'  => 'Jan 2026 - Presente',
+    'exp0_company' => 'Matheus de Paulo - Studio',
     'exp0_desc'    => 'Atuação como freelancer desenhando e codificando sites premium do zero para empresas e profissionais locais. Cuido de todo o ciclo do projeto: estratégia, design no <span class="text-zinc-200 font-medium">Figma</span>, desenvolvimento full-stack com <span class="text-zinc-200 font-medium">Laravel + Livewire</span> e publicação. Cada projeto é único, planejado para gerar autoridade digital e converter visitantes em clientes.',
     'exp0_badge1'  => 'Projetos Sob Medida',
     'exp0_badge2'  => 'Design ao Deploy',
@@ -155,7 +155,7 @@ return [
 
 // Otimizap
     'exp1_role'    => 'Web Developer (Back-end)',
-    'exp1_period'  => 'Jul 2025 — Dez 2025',
+    'exp1_period'  => 'Jul 2025 - Dez 2025',
     'exp1_company' => 'Otimizap - Nunu Tech',
     'exp1_desc'    => 'Atuação focada no desenvolvimento de soluções web robustas utilizando <span class="text-zinc-200 font-medium">PHP e Laravel</span>. Desenvolvimento orientado por entregas e metas de alta performance, garantindo autonomia completa no desenho da arquitetura e cumprimento ágil dos objetivos do ecossistema.',
     'exp1_badge1'  => 'Alta Performance',
@@ -164,7 +164,7 @@ return [
 
 // UNIFOR
     'exp2_role'    => 'Extension Student (Back-end Developer)',
-    'exp2_period'  => 'Jul 2024 — Dez 2024',
+    'exp2_period'  => 'Jul 2024 - Dez 2024',
     'exp2_company' => 'UNIFOR',
     'exp2_desc'    => 'Atuação no desenvolvimento e estruturação do back-end focado em um aplicativo de acessibilidade. Responsável pela criação de APIs seguras e otimizadas utilizando <span class="text-zinc-200 font-medium">Java e Spring Boot</span>, aplicando padrões de arquitetura para garantir manutenibilidade e escalabilidade do projeto.',
     'exp2_badge1'  => 'Acessibilidade',

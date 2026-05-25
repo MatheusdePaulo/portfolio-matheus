@@ -242,8 +242,8 @@ $urlSol  = $isEn ? '/en/solucoes' : '/solucoes';
             <div class="sol-card__level">{{ $isEn ? 'Solution 02' : 'Solução 02' }}</div>
             <h3 class="sol-card__title">{{ $isEn ? 'Smart Management' : 'Gestão Inteligente' }}</h3>
             <p class="sol-card__desc">{{ $isEn
-                ? 'Centralized management software that automates scheduling, payments and client retention — end to end.'
-                : 'Software de gestão centralizado que automatiza agendamentos, pagamentos e retenção de clientes — de ponta a ponta.' }}</p>
+                ? 'Centralized management software that automates scheduling, payments and client retention, end to end.'
+                : 'Software de gestão centralizado que automatiza agendamentos, pagamentos e retenção de clientes, de ponta a ponta.' }}</p>
             <ul class="sol-features">
                 <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>{{ $isEn ? 'Exclusive admin panel with real-time metrics' : 'Painel administrativo exclusivo em tempo real' }}</li>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>{{ $isEn ? 'Online scheduling 24h without manual work' : 'Agendamento online 24h sem trabalho manual' }}</li>
@@ -274,8 +274,8 @@ $urlSol  = $isEn ? '/en/solucoes' : '/solucoes';
             <div class="sol-card__level">{{ $isEn ? 'Solution 03' : 'Solução 03' }}</div>
             <h3 class="sol-card__title">{{ $isEn ? 'PRO Team' : 'Equipe PRO' }}</h3>
             <p class="sol-card__desc">{{ $isEn
-                ? 'Multi-user infrastructure for teams — shared calendars, permissions, split payments and advanced reporting.'
-                : 'Infraestrutura multiusuário para equipes — agendas compartilhadas, permissões, split de pagamentos e relatórios avançados.' }}</p>
+                ? 'Multi-user infrastructure for teams: shared calendars, permissions, split payments and advanced reporting.'
+                : 'Infraestrutura multiusuário para equipes: agendas compartilhadas, permissões, split de pagamentos e relatórios avançados.' }}</p>
             <ul class="sol-features">
                 <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>{{ $isEn ? 'Multiple access levels and permissions' : 'Múltiplos níveis de acesso e permissões' }}</li>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>{{ $isEn ? 'Real-time shared calendar' : 'Agenda compartilhada em tempo real' }}</li>
@@ -304,8 +304,8 @@ $urlSol  = $isEn ? '/en/solucoes' : '/solucoes';
             <div class="sol-card__level">{{ $isEn ? 'Solution 04' : 'Solução 04' }}</div>
             <h3 class="sol-card__title">Enterprise</h3>
             <p class="sol-card__desc">{{ $isEn
-                ? 'Fully bespoke high-complexity software — mapped, designed and engineered exclusively for your operation\'s scale.'
-                : 'Software de alta complexidade 100% sob medida — mapeado, desenhado e desenvolvido exclusivamente para a escala da sua operação.' }}</p>
+                ? 'Fully bespoke high-complexity software, mapped, designed and engineered exclusively for your operation\'s scale.'
+                : 'Software de alta complexidade 100% sob medida, mapeado, desenhado e desenvolvido exclusivamente para a escala da sua operação.' }}</p>
             <ul class="sol-features">
                 <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="stroke:#818cf8"><polyline points="20 6 9 17 4 12"/></svg>{{ $isEn ? '100% custom solution for your model' : 'Solução 100% sob medida para o seu modelo' }}</li>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="stroke:#818cf8"><polyline points="20 6 9 17 4 12"/></svg>{{ $isEn ? 'API integrations and legacy ERP connections' : 'Integrações com APIs e ERPs legados' }}</li>

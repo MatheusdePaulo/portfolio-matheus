@@ -3,14 +3,14 @@ $locale = app()->getLocale();
 $isEn   = $locale === 'en';
 
 $diferenciais = $isEn ? [
-    'Custom-built development — no templates, no copies',
+    'Custom-built development: no templates, no copies',
     'Modern, scalable and maintainable systems',
     'Strategic UX focused on conversion',
     'Performance-optimized for all devices',
     'Smart integrations (PIX, WhatsApp, APIs)',
     'Dedicated support and active follow-up',
 ] : [
-    'Desenvolvimento sob medida — sem templates, sem cópias',
+    'Desenvolvimento sob medida: sem templates, sem cópias',
     'Sistemas modernos, escaláveis e de fácil manutenção',
     'UX estratégica focada em conversão real',
     'Performance otimizada para todos os dispositivos',
@@ -76,8 +76,8 @@ $diferenciais = $isEn ? [
                 </h2>
                 <p class="text-zinc-400 text-base leading-relaxed max-w-lg">
                     {{ $isEn
-                        ? 'I\'m not the average freelancer. I build complete digital ecosystems — from strategy and design to code and launch — built to generate real commercial results.'
-                        : 'Não sou o freelancer comum. Construo ecossistemas digitais completos — da estratégia e design ao código e lançamento — projetados para gerar resultados comerciais reais.' }}
+                        ? 'I\'m not the average freelancer. I build complete digital ecosystems, from strategy and design to code and launch, built to generate real commercial results.'
+                        : 'Não sou o freelancer comum. Construo ecossistemas digitais completos, da estratégia e design ao código e lançamento, projetados para gerar resultados comerciais reais.' }}
                 </p>
             </div>
 

@@ -215,7 +215,7 @@
                         -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 92%);
                         mask-image: linear-gradient(to bottom, black 60%, transparent 92%);">
                 <img src="{{ asset('imagens/MatheusCaricatura.png') }}"
-                     alt="Matheus de Paulo — Desenvolvedor Web Premium"
+                     alt="Matheus de Paulo - Desenvolvedor Web Premium"
                      class="w-full h-full object-contain filter drop-shadow-[0_10px_40px_rgba(168,85,247,0.15)]">
             </div>
 

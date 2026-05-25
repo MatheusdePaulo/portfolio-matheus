@@ -58,11 +58,11 @@
     }
     .case-spotlight__visual img {
         width: 100%; height: 100%;
-        object-fit: contain; object-position: center top;
+        object-fit: cover; object-position: 70% center;
         opacity: 0.65;
         transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
     }
-    .case-spotlight:hover .case-spotlight__visual img { transform: scale(1.01); opacity: 0.82; }
+    .case-spotlight:hover .case-spotlight__visual img { transform: scale(1.03); opacity: 0.82; }
     /* Gradient fade: on desktop → fades right into content; on mobile → fades down */
     .case-spotlight__visual::after {
         content: ''; position: absolute; inset: 0; pointer-events: none;
@@ -180,6 +180,40 @@
 
     /* === MODAL === */
     #project-modal-container { will-change: opacity; background-color: rgba(5, 3, 10, 0.96); }
+
+    /* === Modal video cards === */
+    .modal-video-card {
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.35);
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .modal-video-card:hover {
+        border-color: rgba(168, 85, 247, 0.22);
+        box-shadow: 0 10px 30px rgba(168, 85, 247, 0.07);
+    }
+    .modal-video-header {
+        padding: 12px 14px 10px;
+        display: flex; align-items: center; gap: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .modal-video-num {
+        font-family: 'Orbitron', sans-serif; font-size: 11px; font-weight: 900;
+        color: #a855f7; letter-spacing: 0.05em; flex-shrink: 0;
+    }
+    .modal-video-title {
+        font-family: 'Orbitron', sans-serif; font-size: 9px; font-weight: 700;
+        color: #d4d4d8; text-transform: uppercase; letter-spacing: 0.09em; line-height: 1.25;
+    }
+    .modal-video-sub { font-size: 9.5px; color: #52525b; line-height: 1.4; margin-top: 2px; }
+    .modal-video-caption {
+        font-size: 12px; color: #a1a1aa; line-height: 1.65;
+        padding: 11px 14px 13px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+    .modal-video-wrap { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #04020b; }
+    .modal-video-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
 </style>
 
 <section id="projetos" class="w-full max-w-7xl mx-auto px-6 py-24 relative z-10">
@@ -205,7 +239,7 @@
         {{-- Visual: Admin panel screenshot --}}
         <div class="case-spotlight__visual">
             <img src="{{ asset('imagens/nathan.png') }}"
-                 alt="Painel Administrativo — Nathan do Corte">
+                 alt="Painel Administrativo - Nathan do Corte">
         </div>
 
         {{-- Content --}}
@@ -242,8 +276,8 @@
             {{-- Impact statement --}}
             <p class="text-zinc-400 text-sm leading-relaxed max-w-xs">
                 {{ app()->getLocale() === 'en'
-                    ? 'From online booking to full financial control — an exclusive ecosystem running 24/7, built from scratch to scale the barbershop\'s revenue.'
-                    : 'Do agendamento online ao controle financeiro completo — ecossistema exclusivo operando 24h, construído do zero para escalar o faturamento da barbearia.' }}
+                    ? 'From online booking to full financial control: an exclusive ecosystem running 24/7, built from scratch to scale the barbershop\'s revenue.'
+                    : 'Do agendamento online ao controle financeiro completo: ecossistema exclusivo operando 24h, construído do zero para escalar o faturamento da barbearia.' }}
             </p>
 
             {{-- Feature pills --}}
@@ -307,15 +341,12 @@
 <script>
     (function () {
         const i18n = {
-            live:        @json(__('site.modal_live')),
-            git:         @json(__('site.modal_git')),
-            painTitle:   @json(__('site.modal_pain_title')),
-            solTitle:    @json(__('site.modal_solution_title')),
-            stepsTitle:  @json(__('site.modal_steps_title')),
-            adminTitle:  @json(__('site.modal_admin_title')),
-            adminSub:    @json(__('site.modal_admin_sub')),
-            adminDesc:   @json(__('site.modal_admin_desc')),
-            finalCta:    @json(__('site.modal_final_cta'))
+            live:       @json(__('site.modal_live')),
+            git:        @json(__('site.modal_git')),
+            painTitle:  @json(__('site.modal_pain_title')),
+            solTitle:   @json(__('site.modal_solution_title')),
+            stepsTitle: @json(__('site.modal_steps_title')),
+            finalCta:   @json(__('site.modal_final_cta'))
         };
 
         const locale = @json(app()->getLocale());
@@ -324,69 +355,25 @@
             'barber-nathan': {
                 title:    @json(__('site.projects_p1_title')),
                 subtitle: @json(__('site.projects_p1_subtitle')),
-                tag: locale === 'en' ? 'SaaS · Premium Commercial Management' : 'SaaS · Gestão Comercial Premium',
+                tag: locale === 'en' ? 'Live Case · Commercial Management System' : 'Case Real · Sistema de Gestão Comercial',
                 liveUrl: 'https://nathandocorte.com',
                 gitUrl:  'https://github.com/matheusdepaulo/barber-nathan',
                 pain: locale === 'en'
-                    ? 'Nathan was losing up to 40% of potential bookings because he couldn\'t reply to WhatsApp messages while focused on serving clients. Customers wanted immediate convenience and ended up going elsewhere.'
-                    : 'O Nathan perdia até 40% dos potenciais agendamentos porque não conseguia responder as mensagens do WhatsApp enquanto atendia clientes. Os clientes queriam praticidade imediata e acabavam indo procurar outro profissional.',
+                    ? 'Every day starts the same: waking up to dozens of unanswered messages, mentally tracking who booked, which slot is open, who cancelled without warning. While you\'re in the middle of a service, clients walk out the door to a competitor because they didn\'t get a fast reply. The schedule turns to chaos: unexplained empty slots, unpunished no-shows, revenue that drops with no clear reason. The business grows on your talent but hits a wall on structure. The more clients show up, the deeper the disorganization, and the more money slips through your fingers without you even realizing it.'
+                    : 'Todo dia começa igual: acordar com dezenas de mensagens sem resposta, tentar lembrar mentalmente quem agendou, qual horário sobrou, qual cliente sumiu sem avisar. Enquanto você está no meio de um atendimento, clientes vão embora para o concorrente porque não tiveram retorno rápido. A agenda vira caos: horários buracos que ninguém explica, no-shows sem punição, faturamento que oscila sem que você consiga identificar o motivo. O negócio cresce pelo seu talento, mas trava na falta de estrutura. Quanto mais clientes chegam, maior a desorganização, e mais dinheiro escapa pelas suas mãos sem você perceber.',
                 solution: locale === 'en'
-                    ? 'We created an elegant digital ecosystem where the client books interactively in under 45 seconds, chooses the preferred barber and services with no friction. The business gained full autonomy and stopped leaving money on the table.'
-                    : 'Criamos um ecossistema digital elegante onde o cliente faz o agendamento em menos de 45 segundos, escolhe o barbeiro e os serviços sem barreiras. O negócio ganhou autonomia total e parou de deixar dinheiro na mesa.',
-                adminPanels: [
-                    {
-                        title: locale === 'en' ? 'Central Control Dashboard' : 'Dashboard Central de Controle',
-                        img:   '{{ asset("imagens/Painel Administrativo.png") }}',
-                        desc:  locale === 'en'
-                            ? 'The central engine of the business. A clean and intuitive interface designed for the owner to monitor daily booking flow, real-time barbershop status, total revenue and visitor volume.'
-                            : 'A engrenagem central do negócio. Interface limpa e intuitiva para o empresário monitorar agendamentos diários, status da barbearia em tempo real, receita total e volume de visitantes.'
-                    },
-                    {
-                        title: locale === 'en' ? 'Smart Schedule & Operational Control' : 'Agenda Inteligente & Controle Operacional',
-                        img:   '{{ asset("imagens/agenda.png") }}',
-                        desc:  locale === 'en'
-                            ? 'Internal time-slot monitoring module. Allows on-the-spot bookings, intuitive calendar view and immediate slot blocking for team organization.'
-                            : 'Módulo interno de monitoramento de horários. Permite agendamentos avulsos, visualização por calendário e bloqueio imediato de slots para organização da equipe.'
-                    },
-                    {
-                        title: locale === 'en' ? 'Active Client Management & Auto Drawing' : 'Gestão Ativa de Clientes & Sorteio Automático',
-                        img:   '{{ asset("imagens/clientes.png") }}',
-                        desc:  locale === 'en'
-                            ? 'A living database with an integrated Automatic Drawing tool, designed to fire WhatsApp engagement campaigns and bring clients back automatically.'
-                            : 'Base de dados viva com ferramenta de Sorteio Automático integrada, projetada para disparar campanhas de engajamento no WhatsApp e atrair o cliente de volta automaticamente.'
-                    },
-                    {
-                        title: locale === 'en' ? 'Birthday Tracking & Loyalty Marketing' : 'Controle de Aniversariantes & Fidelização',
-                        img:   '{{ asset("imagens/aniversariantes.png") }}',
-                        desc:  locale === 'en'
-                            ? 'The system automatically filters birthday clients each day, creating the perfect opportunity to send a gift or exclusive benefit — shielding the brand against competition.'
-                            : 'O sistema filtra automaticamente os aniversariantes do dia, gerando oportunidade perfeita para enviar um presente ou benefício exclusivo, blindando a marca contra a concorrência.'
-                    },
-                    {
-                        title: locale === 'en' ? 'Financial Intelligence & Business Health' : 'Inteligência Financeira & Saúde do Negócio',
-                        img:   '{{ asset("imagens/relatorio.png") }}',
-                        desc:  locale === 'en'
-                            ? 'Clean charts of income, expenses, net profit and No-show metrics. Nathan tracks revenue evolution and exports full reports to keep financial health 100% under control.'
-                            : 'Gráficos limpos de entradas, saídas, lucro líquido e métricas de no-show. O Nathan acompanha a evolução de faturamento e exporta relatórios completos para manter a saúde financeira controlada.'
-                    },
-                    {
-                        title: locale === 'en' ? 'Services, Prices & Inventory' : 'Catálogo de Serviços, Preços e Inventário',
-                        img:   '{{ asset("imagens/serviços.png") }}',
-                        desc:  locale === 'en'
-                            ? 'Full autonomy to adjust haircut prices, execution times and manage the inventory of premium men\'s products for sale.'
-                            : 'Autonomia total para ajustar valores de cortes, tempos de execução e gerenciar o estoque de produtos masculinos premium à venda.'
-                    }
-                ],
+                    ? 'We built a complete digital ecosystem that runs on its own, 24 hours a day, without depending on a single manual message. The client books in under 45 seconds directly from their phone. Nathan wakes up with a structured schedule, receives payments automatically and sees the month\'s revenue in real time on a single screen. Operational chaos was replaced by total control. The business stopped leaking money, stopped losing clients from unanswered messages and started scaling with structure, predictability and authority.'
+                    : 'Construímos um ecossistema digital completo que opera sozinho, 24 horas por dia, sem depender de nenhuma mensagem manual. O cliente agenda em menos de 45 segundos direto pelo celular. O Nathan acorda com a agenda estruturada, recebe os pagamentos automaticamente via PIX e enxerga o faturamento do mês em tempo real numa única tela. O caos operacional foi substituído por controle total. O negócio parou de vazar dinheiro, parou de perder clientes por falta de resposta e começou a crescer com estrutura, previsibilidade e autoridade.',
                 steps: locale === 'en' ? [
-                    { num: '01', name: 'Briefing & Ideation',     desc: 'We discussed the barbershop\'s needs and mapped the first strategic ideas to eliminate the manual WhatsApp bottleneck.' },
-                    { num: '02', name: 'Design & Validation',     desc: 'I built the entire exclusive visual interface in Figma and presented it for Nathan\'s approval before starting the code.' },
-                    { num: '03', name: 'Panel & Strategy',        desc: 'I developed the system and admin panel with business rules focused on schedule and revenue control.' },
-                    { num: '04', name: 'Infrastructure & Deploy', desc: 'High-performance server setup, rigorous mobile stability testing and official platform launch.' }
+                    { num: '01', name: 'Immersion & Strategy',   desc: 'We mapped every bottleneck in the business, understood the real client profile and designed the structure to eliminate operational chaos once and for all.' },
+                    { num: '02', name: 'Identity & Design',      desc: 'We built an exclusive interface in Figma, with every detail of the booking flow designed to transmit authority and convert visitors into paying clients.' },
+                    { num: '03', name: 'Ecosystem Build',        desc: 'We developed the client-facing site, admin panel, financial management and automated payments, all integrated into one single custom platform.' },
+                    { num: '04', name: 'Launch & Operation',     desc: 'We went live, trained Nathan to master every feature and ensured the operation ran fully autonomously from the very first day.' }
                 ] : [
-                    { num: '01', name: 'Briefing & Ideação',       desc: 'Discutimos as necessidades da barbearia e desenhamos as primeiras ideias estratégicas para eliminar o gargalo do WhatsApp manual.' },
-                    { num: '02', name: 'Design & Validação',       desc: 'Montei toda a interface visual exclusiva no Figma e apresentei para aprovação do Nathan antes de iniciar o código.' },
-                    { num: '03', name: 'Painel & Estratégia',      desc: 'Desenvolvi o sistema e o painel administrativo com regras de negócio focadas em controle de horários e faturamento.' },
-                    { num: '04', name: 'Infraestrutura & Deploy',  desc: 'Configuração de servidores de alta performance, testes rigorosos de estabilidade mobile e publicação oficial da plataforma.' }
+                    { num: '01', name: 'Imersão & Estratégia',    desc: 'Mapeamos cada gargalo do negócio, entendemos o perfil real do cliente da barbearia e desenhamos a estrutura ideal para eliminar o caos operacional de uma vez por todas.' },
+                    { num: '02', name: 'Identidade & Design',     desc: 'Criamos uma interface exclusiva no Figma, com cada detalhe do fluxo de agendamento pensado para transmitir autoridade e converter visitantes em clientes pagos.' },
+                    { num: '03', name: 'Construção do Ecossistema', desc: 'Desenvolvemos o site do cliente, o painel administrativo, a gestão financeira e a automação de pagamentos, tudo integrado em uma única plataforma sob medida.' },
+                    { num: '04', name: 'Lançamento & Operação',   desc: 'Colocamos o sistema no ar, treinamos o Nathan para dominar cada funcionalidade e garantimos que a operação rodasse de forma totalmente autônoma desde o primeiro dia.' }
                 ]
             },
         };
@@ -396,32 +383,63 @@
             const data = projectsData[projectId];
             if (!data) return;
 
-            let adminPanelHtml = '';
-            if (data.adminPanels && data.adminPanels.length > 0) {
-                adminPanelHtml = `
-                    <div class="space-y-6 border-t border-white/5 pt-8">
-                        <div class="space-y-1">
-                            <h4 class="text-xs font-black uppercase text-purple-400 tracking-widest" style="font-family:'Orbitron',sans-serif;">${i18n.adminTitle}</h4>
-                            <p class="text-zinc-300 text-sm font-medium">${i18n.adminSub}</p>
-                        </div>
-                        <p class="text-zinc-400 text-xs leading-relaxed max-w-2xl">${i18n.adminDesc}</p>
-                        <div class="space-y-10 pt-2">
-                            ${data.adminPanels.map(panel => `
-                                <div class="space-y-3 group">
-                                    <div class="flex items-center gap-2.5">
-                                        <div class="w-2 h-2 rounded-[2px] bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.8)]"></div>
-                                        <h5 class="text-white text-xs md:text-sm font-black uppercase tracking-wider">${panel.title}</h5>
-                                    </div>
-                                    <p class="text-zinc-400 text-xs md:text-sm leading-relaxed max-w-3xl">${panel.desc}</p>
-                                    <div class="w-full rounded-2xl overflow-hidden border border-white/[0.04] bg-zinc-950/60 p-2 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500 hover:border-purple-500/20">
-                                        <img src="${panel.img}" alt="${panel.title}" class="w-full h-auto object-contain rounded-xl opacity-90 group-hover:opacity-100 transition duration-300">
-                                    </div>
-                                </div>
-                            `).join('')}
-                        </div>
+            const videoSectionHtml = `
+                <div class="space-y-5 border-t border-white/5 pt-8">
+                    <div class="space-y-1.5">
+                        <h4 class="text-xs font-black uppercase tracking-widest" style="font-family:'Orbitron',sans-serif;color:#a855f7;">
+                            ${locale === 'en' ? 'The System in Action' : 'O Sistema em Ação'}
+                        </h4>
+                        <p class="text-zinc-300 text-sm font-medium">
+                            ${locale === 'en'
+                                ? 'Two perspectives of a business that stopped leaking money and started operating with total control.'
+                                : 'Duas perspectivas de um negócio que parou de vazar dinheiro e começou a operar com controle total.'}
+                        </p>
                     </div>
-                `;
-            }
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                        <div class="modal-video-card">
+                            <div class="modal-video-header">
+                                <span class="modal-video-num">01</span>
+                                <div>
+                                    <div class="modal-video-title">${locale === 'en' ? 'What your client sees' : 'O que o seu cliente vê'}</div>
+                                    <div class="modal-video-sub">${locale === 'en' ? 'End client experience' : 'Experiência do cliente final'}</div>
+                                </div>
+                            </div>
+                            <p class="modal-video-caption">
+                                ${locale === 'en'
+                                    ? 'A page that sells before the first service. Exclusive design, clear service presentation and a direct booking button: your client chooses, pays and confirms in under 45 seconds, from any device, at any hour. No calls, no WhatsApp messages needed. While you\'re working, the system fills your schedule for you.'
+                                    : 'Uma página que vende antes mesmo do primeiro atendimento. Design exclusivo, serviços apresentados com clareza e agendamento que acontece em segundos: o cliente escolhe, confirma e paga direto pelo celular, a qualquer hora do dia. Sem ligar, sem mensagem. Enquanto você atende, o sistema enche sua agenda por você.'}
+                            </p>
+                            <div class="modal-video-wrap">
+                                <video class="modal-demo-video" muted loop playsinline preload="none">
+                                    <source src="{{ asset('videos/Modelo-site.mp4') }}" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+
+                        <div class="modal-video-card">
+                            <div class="modal-video-header">
+                                <span class="modal-video-num">02</span>
+                                <div>
+                                    <div class="modal-video-title">${locale === 'en' ? 'What you control' : 'O que você controla'}</div>
+                                    <div class="modal-video-sub">${locale === 'en' ? 'Admin panel' : 'Painel administrativo'}</div>
+                                </div>
+                            </div>
+                            <p class="modal-video-caption">
+                                ${locale === 'en'
+                                    ? 'Your command center. Full-month revenue, today\'s schedule, complete client history, cash flow and your best-performing services, all on one screen. You stop guessing and start deciding with real data. This is the difference between managing in chaos and scaling with clarity and control.'
+                                    : 'A central de comando do negócio. Faturamento do mês, agenda do dia, histórico completo de cada cliente, controle de caixa e os serviços que mais geram receita, tudo numa única tela. Você para de adivinhar e começa a decidir com dados reais. Essa é a diferença entre administrar no caos e escalar com clareza e controle.'}
+                            </p>
+                            <div class="modal-video-wrap">
+                                <video class="modal-demo-video" muted loop playsinline preload="none">
+                                    <source src="{{ asset('videos/Painel-adm.mp4') }}" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            `;
 
             document.getElementById('modal-dynamic-content').innerHTML = `
                 <div class="space-y-2">
@@ -461,7 +479,7 @@
                     </div>
                 </div>
 
-                ${adminPanelHtml}
+                ${videoSectionHtml}
 
                 <div class="text-center pt-4">
                     <a href="#agendamento" onclick="closeProjectModal()" class="inline-flex px-8 py-3.5 rounded-full font-bold bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-xs uppercase tracking-widest transition-all hover:scale-105 shadow-[0_4px_20px_rgba(168,85,247,0.2)]">
@@ -472,9 +490,11 @@
 
             document.getElementById('project-modal-container').classList.remove('opacity-0', 'pointer-events-none');
             document.body.style.overflow = 'hidden';
+            document.querySelectorAll('.modal-demo-video').forEach(v => v.play().catch(() => {}));
         };
 
         window.closeProjectModal = function () {
+            document.querySelectorAll('.modal-demo-video').forEach(v => { v.pause(); v.currentTime = 0; });
             document.getElementById('project-modal-container').classList.add('opacity-0', 'pointer-events-none');
             document.body.style.overflow = '';
         };

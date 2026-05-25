@@ -10,7 +10,7 @@ return [
     // Hero
     'hero_tag'       => 'Premium Systems Development',
     'hero_subtitle'  => 'Modern systems for businesses that want to grow digitally.',
-    'hero_desc'      => 'Landing pages, management systems, automation and dashboards — custom-built for your business.',
+    'hero_desc'      => 'Landing pages, management systems, automation and dashboards custom-built for your business.',
     'hero_available' => 'Available for new projects',
     'hero_btn_projects' => 'Request a Quote',
     'hero_btn_contact'  => 'View Solutions',
@@ -59,7 +59,7 @@ return [
     'projects_cta'        => 'View full case →',
 
     'projects_p1_title'    => 'Nathan do Corte Barbershop',
-    'projects_p1_subtitle' => 'Professional Scheduling & Online Flow System.',
+    'projects_p1_subtitle' => 'Complete Commercial Management Ecosystem. Running 24/7.',
     'projects_p1_desc'     => 'Custom-built to optimize service. Eliminates manual messaging bottlenecks, automates real-time scheduling and delivers a booking experience in seconds.',
 
     'projects_p2_tag'      => 'Artificial Intelligence',
@@ -80,16 +80,16 @@ return [
 // Modal
     'modal_live'           => '🌐 Visit Live Site',
     'modal_git'            => '📁 View Code on GitHub',
-    'modal_pain_title'     => '🚨 The Problem (The Pain)',
-    'modal_solution_title' => '💡 The Strategic Solution',
-    'modal_steps_title'    => 'Engineering Pipeline (How it was built)',
-    'modal_admin_title'    => '🎛️ Engineering & Management Intelligence (Internal Panel)',
+    'modal_pain_title'     => 'The Real Scenario: Before the System',
+    'modal_solution_title' => 'The Transformation Delivered',
+    'modal_steps_title'    => 'How It Was Built',
+    'modal_admin_title'    => 'The System in Action',
     'modal_admin_sub'      => 'The strategic engine developed to scale revenue and retain clients automatically.',
     'modal_admin_desc'     => 'More than just a high-conversion external design, the project includes a complete administration ecosystem. It delivers absolute strategic control over the business, bringing data intelligence and automated marketing triggers:',
-    'modal_final_cta'      => 'I need a solution like this for my business',
+    'modal_final_cta'      => 'I want a system like this for my business',
 
     // About (page)
-    'about_page_title'   => 'About — Matheus de Paulo',
+    'about_page_title'   => 'About | Matheus de Paulo',
     'about_exp_label'    => 'Experience',
     'about_exp_value'    => '+2 Years',
     'about_sys_label'    => 'Systems',
@@ -97,7 +97,7 @@ return [
     'about_h1_p1'        => 'Strategy,',
     'about_h1_p2'        => 'Design & Code',
     'about_p1' => "My name is Matheus de Paulo. My journey into premium web development was born from a clear realization: the vast majority of local businesses and professionals have exceptional services in the physical world, but drastically fail to convey that same authority and trust online.",
-    'about_p2' => "I'm not the typical freelancer who just delivers a generic mass-produced website and disappears. I design tailored sales channels and high-conversion pages built to put more money in your pocket — whether automating client booking for your barbershop or clinic, or creating an irresistible digital menu for your restaurant.",
+    'about_p2' => "I'm not the typical freelancer who just delivers a generic mass-produced website and disappears. I design tailored sales channels and high-conversion pages built to put more money in your pocket, whether automating client booking for your barbershop or clinic, or creating an irresistible digital menu for your restaurant.",
     'about_p3' => "Through an exclusive studio model, I take care of every detail of your project: I study the bottlenecks making you lose sales today, design the ideal layout to elevate your brand, and build an impeccable mobile experience. <strong>Here, every project is treated as a unique work: your platform is planned and coded from absolute scratch, ensuring no one in the market has a system anything like yours.</strong>",
     'about_quote' => '"My focus is to deliver total exclusivity. I reject generic solutions or ready-made copies because your business deserves a unique digital identity, with authority and technology no one else can replicate."',
     'about_cta' => 'Build my premium digital presence →',
@@ -145,8 +145,8 @@ return [
 
 // Freelancer (current)
     'exp0_role'    => 'Freelance Web Developer',
-    'exp0_period'  => 'Jan 2026 — Present',
-    'exp0_company' => 'Matheus de Paulo — Studio',
+    'exp0_period'  => 'Jan 2026 - Present',
+    'exp0_company' => 'Matheus de Paulo - Studio',
     'exp0_desc'    => 'Working as a freelancer designing and coding premium websites from scratch for local businesses and professionals. I handle the entire project cycle: strategy, design in <span class="text-zinc-200 font-medium">Figma</span>, full-stack development with <span class="text-zinc-200 font-medium">Laravel + Livewire</span> and deployment. Each project is unique, planned to build digital authority and convert visitors into clients.',
     'exp0_badge1'  => 'Tailor-Made Projects',
     'exp0_badge2'  => 'Design to Deploy',
@@ -154,7 +154,7 @@ return [
 
 // Otimizap
     'exp1_role'    => 'Web Developer (Back-end)',
-    'exp1_period'  => 'Jul 2025 — Dec 2025',
+    'exp1_period'  => 'Jul 2025 - Dec 2025',
     'exp1_company' => 'Otimizap - Nunu Tech',
     'exp1_desc'    => 'Focused on developing robust web solutions using <span class="text-zinc-200 font-medium">PHP and Laravel</span>. Development driven by high-performance deliveries and goals, ensuring full autonomy in architecture design and agile fulfillment of ecosystem objectives.',
     'exp1_badge1'  => 'High Performance',
@@ -163,7 +163,7 @@ return [
 
 // UNIFOR
     'exp2_role'    => 'Extension Student (Back-end Developer)',
-    'exp2_period'  => 'Jul 2024 — Dec 2024',
+    'exp2_period'  => 'Jul 2024 - Dec 2024',
     'exp2_company' => 'UNIFOR',
     'exp2_desc'    => 'Worked on the development and structuring of the back-end focused on an accessibility application. Responsible for creating secure and optimized APIs using <span class="text-zinc-200 font-medium">Java and Spring Boot</span>, applying architectural patterns to ensure maintainability and scalability.',
     'exp2_badge1'  => 'Accessibility',
