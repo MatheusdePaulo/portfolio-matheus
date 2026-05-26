@@ -34,7 +34,13 @@
         {{-- LOGO --}}
         <a href="{{ $urlLogo }}" class="flex items-center gap-2.5 select-none group relative z-50">
             <div class="h-6 flex items-center justify-center transform group-hover:scale-105 transition duration-300">
-                <img src="{{ asset('imagens/logotipo.png') }}" alt="Logo Matheus de Paulo" class="h-full w-auto object-contain opacity-90 group-hover:opacity-100 filter drop-shadow-[0_0_8px_rgba(168,85,247,0.2)]">
+                <picture>
+                    <source srcset="{{ asset('imagens/logotipo.webp') }}" type="image/webp">
+                    <img src="{{ asset('imagens/logotipo.png') }}" alt="Logo Matheus de Paulo"
+                         width="33" height="24"
+                         loading="eager"
+                         class="h-6 w-auto object-contain opacity-90 group-hover:opacity-100 filter drop-shadow-[0_0_8px_rgba(168,85,247,0.2)]">
+                </picture>
             </div>
             <span class="text-white text-base font-black tracking-widest uppercase" style="font-family: 'Orbitron', sans-serif;">
                 matheus de paulo

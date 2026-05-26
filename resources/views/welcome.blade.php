@@ -11,6 +11,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
+    {{-- Pré-carrega a imagem LCP (hero) para reduzir o atraso do LCP --}}
+    <link rel="preload" as="image" href="{{ asset('imagens/MatheusCaricatura.webp') }}" type="image/webp" fetchpriority="high">
+
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -60,7 +63,7 @@
             animation-name: riseUp;
             animation-timing-function: linear;
             animation-iteration-count: infinite;
-            will-change: top, transform;
+            will-change: transform;
         }
 
         .parallax-layer {

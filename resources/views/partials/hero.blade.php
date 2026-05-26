@@ -217,9 +217,15 @@
                  style="max-width: {{ $larguraMax }}; height: {{ $alturaMax }};
                         -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 92%);
                         mask-image: linear-gradient(to bottom, black 60%, transparent 92%);">
-                <img src="{{ asset('imagens/MatheusCaricatura.png') }}"
-                     alt="Matheus de Paulo - Desenvolvedor Web Premium"
-                     class="w-full h-full object-contain filter drop-shadow-[0_10px_40px_rgba(168,85,247,0.15)]">
+                <picture>
+                    <source srcset="{{ asset('imagens/MatheusCaricatura.webp') }}" type="image/webp">
+                    <img src="{{ asset('imagens/MatheusCaricatura.png') }}"
+                         alt="Matheus de Paulo - Desenvolvedor Web Premium"
+                         width="750" height="750"
+                         fetchpriority="high"
+                         loading="eager"
+                         class="w-full h-full object-contain filter drop-shadow-[0_10px_40px_rgba(168,85,247,0.15)]">
+                </picture>
             </div>
 
             <div class="absolute bottom-[-20px] right-4 lg:bottom-10 lg:right-6 z-30

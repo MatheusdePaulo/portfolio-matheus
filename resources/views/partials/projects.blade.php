@@ -238,8 +238,13 @@
 
         {{-- Visual: Admin panel screenshot --}}
         <div class="case-spotlight__visual">
-            <img src="{{ asset('imagens/nathan.png') }}"
-                 alt="Painel Administrativo - Nathan do Corte">
+            <picture>
+                <source srcset="{{ asset('imagens/nathan.webp') }}" type="image/webp">
+                <img src="{{ asset('imagens/nathan.png') }}"
+                     alt="Painel Administrativo - Nathan do Corte"
+                     width="926" height="498"
+                     loading="lazy">
+            </picture>
         </div>
 
         {{-- Content --}}

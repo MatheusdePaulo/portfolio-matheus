@@ -49,9 +49,14 @@
         <div class="hidden lg:flex lg:col-start-2 lg:row-start-1 lg:row-span-2 relative justify-center items-center min-h-[460px]">
             <div class="absolute inset-0 bg-radial-gradient from-purple-500/5 to-transparent rounded-full blur-3xl"></div>
             <div class="w-full max-w-[690px] relative z-10 animate-orbital-float">
-                <img src="{{ asset('imagens/perfil.png') }}"
-                     alt="Matheus de Paulo - Estratégia Digital"
-                     class="w-full h-auto object-contain filter drop-shadow-[0_0_35px_rgba(168,85,247,0.25)] process-center-img">
+                <picture>
+                    <source srcset="{{ asset('imagens/perfil.webp') }}" type="image/webp">
+                    <img src="{{ asset('imagens/perfil.png') }}"
+                         alt="Matheus de Paulo - Estratégia Digital"
+                         width="719" height="1080"
+                         loading="lazy"
+                         class="w-full h-auto object-contain filter drop-shadow-[0_0_35px_rgba(168,85,247,0.25)] process-center-img">
+                </picture>
             </div>
         </div>
 

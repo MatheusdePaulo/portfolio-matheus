@@ -27,7 +27,7 @@
         .floating-item {
             position: absolute; animation-name: riseUp;
             animation-timing-function: linear; animation-iteration-count: infinite;
-            will-change: top, transform;
+            will-change: transform;
         }
         .parallax-layer { /* static decorative elements */ }
         .code-symbol { font-family: 'Space Mono', monospace; user-select: none; }
@@ -564,10 +564,10 @@
         </svg>
     </div>
 
-    <div class="floating-item parallax-layer opacity-50 left-[8%]" style="top: 20%; animation-duration: 45s;" data-speed="-8"><span class="text-purple-400 code-symbol text-4xl">{</span></div>
-    <div class="floating-item parallax-layer opacity-40 left-[88%]" style="top: 45%; animation-duration: 38s;" data-speed="12"><span class="text-indigo-400 code-symbol text-5xl">}</span></div>
-    <div class="floating-item parallax-layer opacity-50 left-[15%]" style="top: 70%; animation-duration: 52s;" data-speed="-6"><span class="text-violet-400 code-symbol text-3xl">[]</span></div>
-    <div class="floating-item parallax-layer opacity-35 left-[75%]" style="top: 15%; animation-duration: 60s;" data-speed="8"><span class="text-purple-300 code-symbol text-2xl">;</span></div>
+    <div class="floating-item parallax-layer opacity-50 left-[8%]" style="animation-duration: 45s;" data-speed="-8"><span class="text-purple-400 code-symbol text-4xl">{</span></div>
+    <div class="floating-item parallax-layer opacity-40 left-[88%]" style="animation-duration: 38s;" data-speed="12"><span class="text-indigo-400 code-symbol text-5xl">}</span></div>
+    <div class="floating-item parallax-layer opacity-50 left-[15%]" style="animation-duration: 52s;" data-speed="-6"><span class="text-violet-400 code-symbol text-3xl">[]</span></div>
+    <div class="floating-item parallax-layer opacity-35 left-[75%]" style="animation-duration: 60s;" data-speed="8"><span class="text-purple-300 code-symbol text-2xl">;</span></div>
 </div>
 
 @include('partials.navbar')

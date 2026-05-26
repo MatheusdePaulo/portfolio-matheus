@@ -27,7 +27,7 @@
         .floating-item {
             position: absolute; animation-name: riseUp;
             animation-timing-function: linear; animation-iteration-count: infinite;
-            will-change: top, transform;
+            will-change: transform;
         }
         .parallax-layer { /* static decorative elements */ }
         .code-symbol { font-family: 'Space Mono', monospace; user-select: none; }
@@ -51,9 +51,9 @@
         </svg>
     </div>
 
-    <div class="floating-item parallax-layer opacity-50 left-[8%]" style="top: 20%; animation-duration: 45s;"><span class="text-purple-400 code-symbol text-4xl">{</span></div>
-    <div class="floating-item parallax-layer opacity-40 left-[88%]" style="top: 45%; animation-duration: 38s;"><span class="text-indigo-400 code-symbol text-5xl">}</span></div>
-    <div class="floating-item parallax-layer opacity-50 left-[15%]" style="top: 70%; animation-duration: 52s;"><span class="text-violet-400 code-symbol text-3xl">[]</span></div>
+    <div class="floating-item parallax-layer opacity-50 left-[8%]" style="animation-duration: 45s;"><span class="text-purple-400 code-symbol text-4xl">{</span></div>
+    <div class="floating-item parallax-layer opacity-40 left-[88%]" style="animation-duration: 38s;"><span class="text-indigo-400 code-symbol text-5xl">}</span></div>
+    <div class="floating-item parallax-layer opacity-50 left-[15%]" style="animation-duration: 52s;"><span class="text-violet-400 code-symbol text-3xl">[]</span></div>
 </div>
 
 @include('partials.navbar')
@@ -65,7 +65,13 @@
             <div class="w-full max-w-md relative transform transition duration-700 hover:scale-[1.01] flex flex-col items-center lg:items-start">
 
                 <div class="fade-bottom-mask w-full">
-                    <img src="{{ asset('imagens/perfil-ux.png') }}" alt="Matheus de Paulo" class="w-full h-auto object-contain filter drop-shadow-[0_10px_25px_rgba(168,85,247,0.15)]">
+                    <picture>
+                        <source srcset="{{ asset('imagens/perfil-ux.webp') }}" type="image/webp">
+                        <img src="{{ asset('imagens/perfil-ux.png') }}" alt="Matheus de Paulo"
+                             width="389" height="585"
+                             loading="eager"
+                             class="w-full h-auto object-contain filter drop-shadow-[0_10px_25px_rgba(168,85,247,0.15)]">
+                    </picture>
                 </div>
 
                 <div class="absolute -bottom-12 lg:-bottom-6 lg:-left-16 z-20 flex gap-4 backdrop-blur-md bg-zinc-950/70 border border-white/[0.06] p-4 rounded-2xl shadow-[0_25px_50px_rgba(0,0,0,0.8)]">
