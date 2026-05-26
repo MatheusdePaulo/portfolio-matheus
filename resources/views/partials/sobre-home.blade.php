@@ -3,14 +3,14 @@ $locale = app()->getLocale();
 $isEn   = $locale === 'en';
 
 $diferenciais = $isEn ? [
-    'Custom-built development: no templates, no copies',
+    'Exclusive digital identity: no templates, no copies',
     'Modern, scalable and maintainable systems',
     'Strategic UX focused on conversion',
     'Performance-optimized for all devices',
     'Smart integrations (PIX, WhatsApp, APIs)',
     'Dedicated support and active follow-up',
 ] : [
-    'Desenvolvimento sob medida: sem templates, sem cópias',
+    'Identidade digital exclusiva: sem templates, sem cópias',
     'Sistemas modernos, escaláveis e de fácil manutenção',
     'UX estratégica focada em conversão real',
     'Performance otimizada para todos os dispositivos',
@@ -76,8 +76,8 @@ $diferenciais = $isEn ? [
                 </h2>
                 <p class="text-zinc-400 text-base leading-relaxed max-w-lg">
                     {{ $isEn
-                        ? 'I\'m not the average freelancer. I build complete digital ecosystems, from strategy and design to code and launch, built to generate real commercial results.'
-                        : 'Não sou o freelancer comum. Construo ecossistemas digitais completos, da estratégia e design ao código e lançamento, projetados para gerar resultados comerciais reais.' }}
+                        ? 'Every local business I work with has the potential to be the top reference in its city. I build the digital presence that makes that potential visible from the very first click.'
+                        : 'Cada negócio local que atendo tem potencial de ser referência na cidade. Construo a presença digital que faz esse potencial ser percebido desde o primeiro clique.' }}
                 </p>
             </div>
 
@@ -129,7 +129,7 @@ $diferenciais = $isEn ? [
                             {{ $isEn ? 'Projects' : 'Projetos' }}
                         </div>
                         <div class="text-4xl font-black text-white leading-none"
-                             style="font-family: 'Orbitron', sans-serif;">+15</div>
+                             style="font-family: 'Orbitron', sans-serif;">+8</div>
                         <div class="text-sm font-bold text-zinc-300">{{ $isEn ? 'Delivered' : 'Entregues' }}</div>
                     </div>
                 </div>

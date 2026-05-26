@@ -13,7 +13,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 items-start">
 
-            <div class="lg:col-span-4 space-y-4 select-none flex flex-col items-center md:items-start">
+            <div class="lg:col-span-5 space-y-4 select-none flex flex-col items-center md:items-start">
                 <a href="{{ $home }}" class="flex items-center gap-2.5 group w-fit">
                     <svg width="22" height="22" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-purple-500 transform group-hover:scale-110 transition duration-300">
                         <path d="M50 5 L95 85 H5 Z" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
@@ -37,27 +37,18 @@
                 </div>
             </div>
 
-            <div class="lg:col-span-2 space-y-4 flex flex-col items-center md:items-start">
+            <div class="lg:col-span-3 space-y-4 flex flex-col items-center md:items-start">
                 <h4 class="text-xs font-black uppercase tracking-widest text-white font-orbitron" style="font-family: 'Orbitron', sans-serif;">{{ __('site.footer_nav') }}</h4>
                 <ul class="space-y-2 text-xs md:text-sm text-center md:text-left">
                     <li><a href="{{ $home }}#inicio" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.nav_home') }}</a></li>
                     <li><a href="{{ $base }}/sobre" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.nav_about') }}</a></li>
                     <li><a href="{{ $home }}#projetos" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.nav_projects') }}</a></li>
-                    <li><a href="{{ $home }}#processos" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.processes_tag') }}</a></li>
+                    <li><a href="{{ $isEn ? '/en/solucoes' : '/solucoes' }}" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.nav_solutions') }}</a></li>
+                    <li><a href="{{ $home }}#agendamento" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.nav_contact') }}</a></li>
                 </ul>
             </div>
 
-            <div class="lg:col-span-3 space-y-4 flex flex-col items-center md:items-start">
-                <h4 class="text-xs font-black uppercase tracking-widest text-white font-orbitron" style="font-family: 'Orbitron', sans-serif;">{{ __('site.footer_cases') }}</h4>
-                <ul class="space-y-2 text-xs md:text-sm text-center md:text-left">
-                    <li><a href="{{ $home }}#projetos" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.projects_p1_title') }}</a></li>
-                    <li><a href="{{ $home }}#projetos" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.projects_p2_title') }}</a></li>
-                    <li><a href="{{ $home }}#projetos" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.projects_p3_title') }}</a></li>
-                    <li><a href="{{ $home }}#projetos" class="text-zinc-500 hover:text-white transition duration-200">{{ __('site.projects_p4_title') }}</a></li>
-                </ul>
-            </div>
-
-            <div class="lg:col-span-3 space-y-4 flex flex-col items-center md:items-start">
+            <div class="lg:col-span-4 space-y-4 flex flex-col items-center md:items-start">
                 <h4 class="text-xs font-black uppercase tracking-widest text-white font-orbitron" style="font-family: 'Orbitron', sans-serif;">{{ __('site.footer_channels') }}</h4>
                 <ul class="space-y-2.5 text-xs md:text-sm">
                     <li class="flex items-center gap-2 justify-center md:justify-start">
@@ -80,7 +71,7 @@
         <div class="mt-8 pt-8 border-t border-white/[0.03] flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-zinc-600 select-none">
             <p>© {{ date('Y') }} Matheus de Paulo. {{ __('site.footer_rights') }}</p>
             <p class="flex items-center gap-1.5">
-                {{ __('site.footer_made') }} <span class="text-purple-500/80">✦</span> {{ $isEn ? 'by' : 'por' }} Matheus de Paulo
+                {{ __('site.footer_made') }} <span>❤️</span> {{ $isEn ? 'by' : 'por' }} Matheus de Paulo
             </p>
         </div>
 

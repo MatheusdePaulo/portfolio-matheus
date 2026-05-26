@@ -34,7 +34,7 @@
                 <div class="p-4 rounded-xl bg-zinc-900/30 border border-purple-500/20 shadow-[0_0_20px_rgba(168,85,247,0.05)]">
                     <div class="flex justify-between items-center mb-2">
                         <span class="text-xs font-bold uppercase tracking-wider text-zinc-400">{{ __('site.contact_slots_label') }}</span>
-                        <span class="text-xs font-black text-purple-400 font-orbitron" style="font-family: 'Orbitron', sans-serif;">3 / 5</span>
+                        <span class="text-xs font-black text-purple-400 font-orbitron" style="font-family: 'Orbitron', sans-serif;">3 de 5 vagas preenchidas</span>
                     </div>
                     <div class="w-full h-2 bg-zinc-900 rounded-full overflow-hidden border border-white/5">
                         <div class="h-full bg-gradient-to-r from-purple-600 to-indigo-500 rounded-full" style="width: 60%;"></div>

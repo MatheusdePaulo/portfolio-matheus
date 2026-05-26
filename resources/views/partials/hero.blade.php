@@ -204,6 +204,9 @@
                     {{ __('site.hero_btn_contact') }}
                 </a>
             </div>
+            <p class="text-[11px] text-zinc-600 tracking-wide text-center lg:text-left">
+                {{ __('site.hero_microcopy') }}
+            </p>
 
         </div>
 
@@ -219,7 +222,7 @@
                      class="w-full h-full object-contain filter drop-shadow-[0_10px_40px_rgba(168,85,247,0.15)]">
             </div>
 
-            <div class="absolute bottom-4 right-4 lg:bottom-10 lg:right-6 z-30
+            <div class="absolute bottom-[-20px] right-4 lg:bottom-10 lg:right-6 z-30
                         py-5 px-8 rounded-2xl
                         bg-zinc-900/70 border border-white/[0.06]
                         backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)]
@@ -227,12 +230,12 @@
                 <div class="grid grid-cols-2 gap-8 divide-x divide-white/10 items-center">
                     <div class="text-center space-y-1">
                         <div class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{{ __('site.about_exp_label') }}</div>
-                        <div class="text-3xl font-black text-purple-400 tracking-tight leading-none">2</div>
+                        <div class="text-3xl font-black text-purple-400 tracking-tight leading-none">+2</div>
                         <div class="text-sm font-bold text-white">{{ __('site.hero_years') }}</div>
                     </div>
                     <div class="text-center pl-8 space-y-1">
                         <div class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{{ __('site.hero_projects') }}</div>
-                        <div class="text-3xl font-black text-white tracking-tight leading-none">+15</div>
+                        <div class="text-3xl font-black text-white tracking-tight leading-none">+8</div>
                         <div class="text-sm font-bold text-zinc-300">{{ __('site.hero_delivered') }}</div>
                     </div>
                 </div>
@@ -243,7 +246,7 @@
     </main>
 
     {{-- MOUSE CENTRALIZADO ABAIXO DO GRID --}}
-    <div class="w-full flex justify-center pb-6 -mt-8">
+    <div class="hidden lg:flex w-full justify-center pb-6 -mt-8">
         <div class="scroll-mouse">
             <div class="scroll-mouse__icon">
                 <div class="scroll-mouse__wheel"></div>

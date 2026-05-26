@@ -193,6 +193,30 @@
 
 @include('partials.hero')
 
+{{-- Manifesto editorial --}}
+<div class="w-full max-w-4xl mx-auto px-6 py-14 relative z-10 select-none">
+    <div class="flex flex-col items-center text-center gap-6">
+        <div class="flex items-center gap-3">
+            <div class="h-px w-12 bg-gradient-to-r from-transparent to-purple-500/40"></div>
+            <span class="text-[10px] font-bold uppercase tracking-[0.28em] text-purple-500/60" style="font-family:'Orbitron',sans-serif;">
+                {{ app()->getLocale() === 'en' ? 'The problem' : 'O problema' }}
+            </span>
+            <div class="h-px w-12 bg-gradient-to-l from-transparent to-purple-500/40"></div>
+        </div>
+        <p class="text-zinc-300 text-lg md:text-xl lg:text-2xl font-medium leading-relaxed max-w-2xl">
+            @if(app()->getLocale() === 'en')
+                Most local businesses look <span class="text-zinc-500">small online</span>.<br>
+                Even when they're exceptional in the real world.<br>
+                <span class="text-white font-semibold">We build the digital presence they deserve.</span>
+            @else
+                A maioria das empresas locais <span class="text-zinc-500">parece pequena online</span>.<br>
+                Mesmo sendo excelentes no mundo real.<br>
+                <span class="text-white font-semibold">Criamos a presença digital que elas merecem.</span>
+            @endif
+        </p>
+    </div>
+</div>
+
 @include('partials.projects')
 
 @include('partials.processes')
