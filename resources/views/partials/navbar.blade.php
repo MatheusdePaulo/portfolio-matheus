@@ -187,9 +187,13 @@
 
             function moveMarker(element) {
                 if (!element || !marker) return;
+                // Lê dimensões primeiro (sem writes anteriores = sem reflow forçado)
+                const w = element.offsetWidth;
+                const l = element.offsetLeft;
+                // Escreve tudo em seguida de uma vez
                 marker.style.opacity = '1';
-                marker.style.width = `${element.offsetWidth}px`;
-                marker.style.transform = `translateX(${element.offsetLeft - 6}px)`;
+                marker.style.width = `${w}px`;
+                marker.style.transform = `translateX(${l - 6}px)`;
                 navItems.forEach(item => {
                     item.classList.remove('text-white', 'pl-7');
                     item.classList.add('text-zinc-400');
@@ -271,32 +275,21 @@
             }
             setTimeout(setInitialMarker, 100);
 
-            // ============== SCROLL SPY ==============
+            // ============== SCROLL SPY (IntersectionObserver — sem leitura de offsetTop no scroll) ==============
             if (isHome) {
-                const sections = ['inicio', 'projetos', 'agendamento']
-                    .map(id => ({ id, el: document.getElementById(id) }))
-                    .filter(s => s.el);
-
-                let scrollTimeout;
-                window.addEventListener('scroll', () => {
-                    clearTimeout(scrollTimeout);
-                    scrollTimeout = setTimeout(() => {
-                        const scrollY = window.scrollY + 100;
-                        let current = 'inicio';
-
-                        if (scrollY < 200) {
-                            current = 'inicio';
-                        } else {
-                            for (const s of sections) {
-                                if (s.el.offsetTop <= scrollY) current = s.id;
-                            }
-                        }
-
-                        const activeLink = document.querySelector(`.nav-item[data-anchor="${current}"]`);
+                const spyObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (!entry.isIntersecting) return;
+                        const activeLink = document.querySelector(`.nav-item[data-anchor="${entry.target.id}"]`);
                         if (activeLink && !activeLink.classList.contains('text-white')) {
                             moveMarker(activeLink);
                         }
-                    }, 50);
+                    });
+                }, { rootMargin: '-80px 0px -40% 0px', threshold: 0 });
+
+                ['inicio', 'projetos', 'agendamento'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) spyObserver.observe(el);
                 });
             }
 

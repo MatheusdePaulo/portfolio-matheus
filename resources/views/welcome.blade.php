@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matheus de Paulo | Portfólio</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    {{-- Preload das fontes críticas → elimina FOUT que contribui para CLS --}}
+    <link rel="preload" href="https://fonts.gstatic.com/s/orbitron/v35/yMJRMIlzdpvBhQQL_QqprQ.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20y0.woff2" as="font" type="font/woff2" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     {{-- Pré-carrega a imagem LCP (hero) para reduzir o atraso do LCP --}}
@@ -102,7 +105,8 @@
 </head>
 <body class="text-white min-h-screen relative bg-grid-pattern overflow-x-hidden">
 
-<div class="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-0">
+{{-- fixed + contain:strict → orbs posicionados em % do viewport (nunca muda), eliminando CLS --}}
+<div class="fixed inset-0 w-screen h-screen pointer-events-none overflow-hidden z-0" style="contain: strict;">
     <div class="bg-orb absolute w-[700px] h-[700px] rounded-full bg-purple-600/10 blur-[130px] top-[-10%] left-[-10%]"></div>
     <div class="bg-orb absolute w-[600px] h-[600px] rounded-full bg-indigo-600/10 blur-[140px] top-[10%] right-[-5%]"></div>
     <div class="bg-orb absolute w-[500px] h-[500px] rounded-full bg-purple-500/15 blur-[100px] top-[20%] right-[15%]"></div>
