@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() === 'en' ? 'en' : 'pt-br' }}">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>{{ __('site.about_page_title') }}</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Orbitron:wght@700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
+        html { overflow-x: hidden; max-width: 100vw; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030303; overflow-x: hidden; margin: 0; padding: 0; }
         .bg-grid-pattern {
             background-size: 50px 50px;
@@ -37,13 +38,38 @@
             mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
             -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
         }
+
+        /* Mobile: reduz o fundo decorativo sem afetar desktop */
+        @media (max-width: 767px) {
+            /* Oculta o 2º bg-orb — mantém apenas o primeiro (purple top-left) */
+            .bg-orb:nth-of-type(2) {
+                display: none;
+            }
+            /* Suaviza o bg-orb restante */
+            .bg-orb:nth-of-type(1) {
+                opacity: 0.35;
+                filter: blur(90px) !important;
+            }
+            /* Oculta SVGs decorativos fixos (órbitas, mandalas) */
+            .parallax-layer:not(.floating-item) {
+                display: none;
+            }
+            /* Mantém floating-items visíveis, exceto o de left-[88%]
+               que vaza além do viewport em telas < 375px */
+            .floating-item {
+                display: block !important;
+            }
+            .floating-item[class*="left-[88%]"] {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body class="text-white min-h-screen relative bg-grid-pattern overflow-x-hidden">
 
 <div class="fixed inset-0 w-screen h-screen pointer-events-none overflow-hidden z-0" style="contain: strict;">
-    <div class="absolute w-[700px] h-[700px] rounded-full bg-purple-600/10 blur-[130px] top-[-5%] left-[-10%]"></div>
-    <div class="absolute w-[600px] h-[600px] rounded-full bg-indigo-600/10 blur-[140px] top-[30%] right-[-10%]"></div>
+    <div class="bg-orb absolute w-[700px] h-[700px] rounded-full bg-purple-600/10 blur-[130px] top-[-5%] left-[-10%]"></div>
+    <div class="bg-orb absolute w-[600px] h-[600px] rounded-full bg-indigo-600/10 blur-[140px] top-[30%] right-[-10%]"></div>
 
     <div class="parallax-layer absolute top-[15%] right-[-5%] opacity-35 z-10" data-speed="-15">
         <svg width="320" height="320" viewBox="0 0 100 100" fill="none" stroke="currentColor" class="text-purple-500/40 rot-macro-slow-cw">

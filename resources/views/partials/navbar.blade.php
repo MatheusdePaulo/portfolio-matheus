@@ -150,15 +150,35 @@
             const line2 = document.getElementById('line-2');
             const line3 = document.getElementById('line-3');
 
+            let menuScrollY = 0;
+
+            function lockScroll() {
+                menuScrollY = window.scrollY;
+                document.body.style.position = 'fixed';
+                document.body.style.top      = '-' + menuScrollY + 'px';
+                document.body.style.width    = '100%';
+                document.body.style.overflow = 'hidden';
+            }
+
+            function unlockScroll() {
+                document.body.style.position = '';
+                document.body.style.top      = '';
+                document.body.style.width    = '';
+                document.body.style.overflow = '';
+                window.scrollTo(0, menuScrollY);
+            }
+
             function toggleMenu() {
                 const isOpen = menu.classList.contains('left-0');
                 if (!isOpen) {
+                    lockScroll();
                     menu.classList.remove('left-full', 'opacity-0', 'pointer-events-none');
                     menu.classList.add('left-0', 'opacity-100');
                     line1.style.transform = 'rotate(45deg) translate(5px, 5px)';
                     line2.style.opacity = '0';
                     line3.style.transform = 'rotate(-45deg) translate(5px, -5px)';
                 } else {
+                    unlockScroll();
                     menu.classList.remove('left-0', 'opacity-100');
                     menu.classList.add('left-full', 'opacity-0', 'pointer-events-none');
                     line1.style.transform = 'none';

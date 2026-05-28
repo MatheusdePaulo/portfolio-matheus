@@ -2,7 +2,7 @@
 <html lang="pt-br" style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Matheus de Paulo | Portfólio</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -18,6 +18,12 @@
     <link rel="preload" as="image" href="{{ asset('imagens/MatheusCaricatura.webp') }}" type="image/webp" fetchpriority="high">
 
     <style>
+        /* Bug fix: Safari iOS ignora overflow-x:hidden no body isoladamente;
+           aplicar em html também é necessário para bloquear o scroll horizontal. */
+        html {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #030303;
@@ -74,15 +80,35 @@
             will-change: transform;
         }
 
-        /* Reduz drasticamente o peso no mobile */
-        @media (max-width: 768px) {
-            /* Esconde metade dos elementos flutuantes em mobile pra performance */
-            .floating-item:nth-child(odd) {
+        /* Mobile: reduz drasticamente o fundo decorativo sem afetar desktop */
+        @media (max-width: 767px) {
+            /* Oculta 2 dos 3 bg-orbs — mantém apenas o primeiro (purple top-left) */
+            .bg-orb:nth-of-type(2),
+            .bg-orb:nth-of-type(3) {
                 display: none;
             }
-            /* Reduz blur dos orbs em mobile */
-            .bg-orb {
-                filter: blur(60px) !important;
+            /* Suaviza o único bg-orb restante */
+            .bg-orb:nth-of-type(1) {
+                opacity: 0.35;
+                filter: blur(90px) !important;
+            }
+            /* Oculta SVGs decorativos fixos (órbitas, mandalas, triângulos) */
+            .parallax-layer:not(.floating-item) {
+                display: none;
+            }
+            /* Oculta todos os floating-items por padrão — evita overflow horizontal
+               e reduz poluição visual no mobile */
+            .floating-item {
+                display: none !important;
+            }
+            /* Reexibe apenas 5 símbolos de código em posições seguras (≤ 67% do viewport),
+               mantendo a identidade premium sem vazar além da viewport */
+            .floating-item[class*="left-[12%]"],
+            .floating-item[class*="left-[26%]"],
+            .floating-item[class*="left-[40%]"],
+            .floating-item[class*="left-[55%]"],
+            .floating-item[class*="left-[67%]"] {
+                display: block !important;
             }
         }
 

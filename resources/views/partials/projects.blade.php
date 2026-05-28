@@ -179,7 +179,37 @@
     .case-card:hover .case-card__cta { color: #c084fc; gap: 11px; }
 
     /* === MODAL === */
-    #project-modal-container { will-change: opacity; background-color: rgba(5, 3, 10, 0.96); }
+    #project-modal-container { will-change: opacity; background-color: rgba(5, 3, 10, 0.96); overflow-x: hidden; }
+
+    /* === Android Chrome modal fix — evita expansão horizontal da viewport === */
+    #project-modal-container > div {
+        overflow-x: hidden;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+    #project-modal-container img,
+    #project-modal-container video,
+    #project-modal-container pre,
+    #project-modal-container table {
+        max-width: 100%;
+        height: auto;
+    }
+    @media (max-width: 767px) {
+        #project-modal-container {
+            padding: 12px;
+            align-items: flex-start;
+        }
+        #project-modal-container > div {
+            max-height: calc(100vh - 24px);
+            border-radius: 20px;
+        }
+        #project-modal-container * {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        .case-pill { white-space: normal; }
+        .modal-video-header { flex-wrap: wrap; }
+    }
 
     /* === Modal video cards === */
     .modal-video-card {
@@ -495,6 +525,7 @@
 
             document.getElementById('project-modal-container').classList.remove('opacity-0', 'pointer-events-none');
             document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflowX = 'hidden';
             document.querySelectorAll('.modal-demo-video').forEach(v => v.play().catch(() => {}));
         };
 
@@ -502,6 +533,7 @@
             document.querySelectorAll('.modal-demo-video').forEach(v => { v.pause(); v.currentTime = 0; });
             document.getElementById('project-modal-container').classList.add('opacity-0', 'pointer-events-none');
             document.body.style.overflow = '';
+            document.documentElement.style.overflowX = '';
         };
 
         document.getElementById('project-modal-container').addEventListener('click', function (e) {

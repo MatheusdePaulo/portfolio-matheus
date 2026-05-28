@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() === 'en' ? 'en' : 'pt-br' }}">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>{{ app()->getLocale() === 'en' ? 'Solutions' : 'Soluções' }} | Matheus de Paulo</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Orbitron:wght@700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
+        html { overflow-x: hidden; max-width: 100vw; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030303; overflow-x: hidden; margin: 0; padding: 0; }
         .bg-grid-pattern {
             background-size: 50px 50px;
@@ -534,6 +535,32 @@
         }
         @media (max-width: 639px) { .sol-modal__footer { padding: 14px 14px 22px; } }
 
+        /* Mobile: reduz o fundo decorativo sem afetar desktop */
+        @media (max-width: 767px) {
+            /* Oculta 2 dos 3 bg-orbs — mantém apenas o primeiro (purple top-left) */
+            .bg-orb:nth-of-type(2),
+            .bg-orb:nth-of-type(3) {
+                display: none;
+            }
+            /* Suaviza o bg-orb restante */
+            .bg-orb:nth-of-type(1) {
+                opacity: 0.35;
+                filter: blur(90px) !important;
+            }
+            /* Oculta SVGs decorativos fixos (órbitas com parallax-layer) */
+            .parallax-layer:not(.floating-item) {
+                display: none;
+            }
+            /* Mantém floating-items visíveis, exceto o de left-[88%]
+               que vaza além do viewport em telas mobile */
+            .floating-item {
+                display: block !important;
+            }
+            .floating-item[class*="left-[88%]"] {
+                display: none !important;
+            }
+        }
+
         @media (prefers-reduced-motion: reduce) {
             .floating-item { animation: none !important; opacity: 0 !important; }
             .rot-macro-slow-cw, .rot-macro-slow-ccw { animation: none !important; }
@@ -546,9 +573,9 @@
 
 {{-- Fundo decorativo --}}
 <div class="fixed inset-0 w-screen h-screen pointer-events-none overflow-hidden z-0" style="contain: strict;">
-    <div class="absolute w-[700px] h-[700px] rounded-full bg-purple-600/10 blur-[130px] top-[-5%] left-[-10%]"></div>
-    <div class="absolute w-[600px] h-[600px] rounded-full bg-indigo-600/10 blur-[140px] top-[30%] right-[-10%]"></div>
-    <div class="absolute w-[500px] h-[500px] rounded-full bg-violet-600/8 blur-[120px] bottom-[10%] left-[20%]"></div>
+    <div class="bg-orb absolute w-[700px] h-[700px] rounded-full bg-purple-600/10 blur-[130px] top-[-5%] left-[-10%]"></div>
+    <div class="bg-orb absolute w-[600px] h-[600px] rounded-full bg-indigo-600/10 blur-[140px] top-[30%] right-[-10%]"></div>
+    <div class="bg-orb absolute w-[500px] h-[500px] rounded-full bg-violet-600/8 blur-[120px] bottom-[10%] left-[20%]"></div>
 
     <div class="parallax-layer absolute top-[15%] right-[-5%] opacity-35 z-10" data-speed="-15">
         <svg width="320" height="320" viewBox="0 0 100 100" fill="none" stroke="currentColor" class="text-purple-500/40 rot-macro-slow-cw">
@@ -582,13 +609,13 @@
         {{-- Cabeçalho --}}
         <div class="text-center mb-16 relative z-10 select-none sol-reveal">
             <span class="inline-flex items-center px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.25em] text-purple-300 bg-purple-500/10 border border-purple-500/20 mb-5" style="font-family: 'Orbitron', sans-serif;">
-                {{ $isEn ? 'Plans & Solutions' : 'Planos e Soluções' }}
+                {{ $isEn ? 'Solutions' : 'Soluções' }}
             </span>
             <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tight leading-[1.05]" style="font-family: 'Orbitron', sans-serif;">
-                {{ $isEn ? 'Choose the Right Plan' : 'Escolha o Plano Ideal' }}<br>{{ $isEn ? 'For Your ' : 'Para o ' }}<span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">{{ $isEn ? 'Business' : 'Seu Negócio' }}</span>
+                {{ $isEn ? 'A presence that works' : 'Seu negócio merece' }}<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">{{ $isEn ? 'for your business' : 'uma presença à altura' }}</span>
             </h2>
             <p class="text-zinc-400 text-sm md:text-base max-w-2xl mx-auto leading-relaxed mt-5">
-                {{ $isEn ? 'Each plan was designed to solve a real business problem, from online positioning to complete operational automation.' : 'Cada plano foi criado para resolver um problema real de negócio, do posicionamento online à automação operacional completa.' }}
+                {{ $isEn ? 'Choose where to start. We handle the rest.' : 'Escolha o ponto de partida. O resto definimos juntos.' }}
             </p>
         </div>
 
@@ -611,49 +638,49 @@
                 </div>
 
                 <div class="sol-card__level">{{ $isEn ? 'Solution 01' : 'Solução 01' }}</div>
-                <h3 class="sol-card__title">{{ $isEn ? 'Digital Presence' : 'Presença Digital' }}</h3>
-                <p class="sol-card__phrase">"{{ $isEn ? 'Strategic digital presence for businesses that want to lead locally.' : 'Presença digital estratégica para negócios que querem liderar localmente.' }}"</p>
-                <p class="sol-card__desc">{{ $isEn ? 'Premium website built from scratch to convey immediate authority and attract new clients.' : 'Site premium desenvolvido sob medida para transmitir autoridade imediata e atrair novos clientes.' }}</p>
+                <h3 class="sol-card__title">{{ $isEn ? 'Digital Identity' : 'Identidade Digital' }}</h3>
+                <p class="sol-card__phrase">{{ $isEn ? 'For businesses that need to be found and chosen.' : 'Para negócios que precisam ser encontrados e escolhidos.' }}</p>
+                <p class="sol-card__desc">{{ $isEn ? 'A website that doesn\'t just exist, it works. Built to project authority and turn visitors into real clients.' : 'Um site que não apenas existe, mas trabalha. Construído para transmitir autoridade e converter visita em contato.' }}</p>
 
                 <ul class="sol-features">
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        {{ $isEn ? 'Exclusive and responsive design' : 'Design exclusivo e responsivo' }}
+                        {{ $isEn ? 'Google positioning for your local market' : 'Posicionamento no Google para o seu mercado local' }}
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        {{ $isEn ? 'WhatsApp integrated for instant contact' : 'WhatsApp integrado para contato imediato' }}
+                        {{ $isEn ? 'Design that reflects the quality of your real work' : 'Design que comunica o nível do seu trabalho real' }}
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        {{ $isEn ? 'Smart forms to capture leads' : 'Formulários inteligentes para captar leads' }}
+                        {{ $isEn ? 'WhatsApp, maps and booking integrated' : 'WhatsApp, mapas e agendamento integrados' }}
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        {{ $isEn ? 'Google-optimized structure for conversion' : 'Estrutura otimizada para Google e para conversão' }}
+                        {{ $isEn ? 'Mobile experience that doesn\'t disappoint' : 'Experiência mobile que não decepciona' }}
                     </li>
                 </ul>
 
                 <div class="sol-ideal">
                     <div class="sol-ideal__label">{{ $isEn ? 'Target Focus' : 'Foco de Atuação' }}</div>
-                    <div class="sol-ideal__list">{{ $isEn ? 'Professionals and local businesses that need to increase authority, visibility and win more clients.' : 'Profissionais e negócios locais que precisam aumentar autoridade, visibilidade e conquistar mais clientes.' }}</div>
+                    <div class="sol-ideal__list">{{ $isEn ? 'Professionals and local businesses that want to be seen as the go-to in their area.' : 'Profissionais e negócios locais que querem ser vistos como referência na região.' }}</div>
                 </div>
 
                 <div class="sol-price">
-                    <div class="sol-price__row">
-                        <span class="sol-price__de">{{ $isEn ? 'WAS' : 'DE' }}</span>
-                        <span class="sol-price__original">R$ 2.490</span>
-                    </div>
-                    <div class="sol-price__row" style="margin-top: 4px;">
-                        <span class="sol-price__por">{{ $isEn ? 'NOW' : 'POR' }}</span>
-                        <div class="sol-price__value"><span class="sol-price__currency">R$</span>1.890</div>
-                    </div>
+                    <div class="sol-price__label">{{ $isEn ? 'Investment from' : 'Investimento a partir de' }}</div>
+                    <div class="sol-price__value"><span class="sol-price__currency">R$</span>1.590</div>
                 </div>
 
                 <a href="{{ $isEn ? '/en#agendamento' : '/#agendamento' }}" class="sol-cta">
-                    {{ $isEn ? 'Request a Proposal' : 'Solicitar Proposta' }} <span class="sol-cta__arrow">→</span>
+                    {{ $isEn ? 'Start a Project' : 'Iniciar Projeto' }} <span class="sol-cta__arrow">→</span>
                 </a>
-                <p class="sol-price__monthly">+ R$60/{{ $isEn ? 'mo' : 'mês' }} ({{ $isEn ? 'domain, hosting and basic support' : 'domínio, hospedagem e suporte básico' }})</p>
+                <p class="sol-price__monthly">
+                    @if($isEn)
+                        <span style="color: #a855f7; font-weight: 700;">3× of R$530, no interest</span> · + R$60/mo (domain, hosting and support)
+                    @else
+                        <span style="color: #a855f7; font-weight: 700;">3x de R$530 sem juros</span> · + R$60/mês (domínio, hospedagem e suporte)
+                    @endif
+                </p>
             </div>
 
             {{-- ============ SOLUÇÃO 02 — Gestão Inteligente (FEATURED) ============ --}}
@@ -677,51 +704,53 @@
                 </div>
 
                 <div class="sol-card__level">{{ $isEn ? 'Solution 02' : 'Solução 02' }}</div>
-                <h3 class="sol-card__title">{{ $isEn ? 'Smart Management' : 'Gestão Inteligente' }}</h3>
-                <p class="sol-card__phrase">"{{ $isEn ? 'Stop losing money to disorganization. Automate everything.' : 'Pare de perder dinheiro com desorganização. Automatize tudo.' }}"</p>
-                <p class="sol-card__desc">{{ $isEn ? 'Complete system that eliminates manual processes and puts financial and operational control in the palm of your hand.' : 'Sistema completo que elimina processos manuais e coloca o controle financeiro e operacional na palma da sua mão.' }}</p>
+                <h3 class="sol-card__title">{{ $isEn ? 'Smart Operations' : 'Operação Inteligente' }}</h3>
+                <p class="sol-card__phrase">{{ $isEn ? 'For those who are done running the business on instinct alone.' : 'Para quem cansou de gerenciar o negócio no improviso.' }}</p>
+                <p class="sol-card__desc">{{ $isEn ? 'Scheduling, payments and client management in one system. Your business running on method, not luck.' : 'Agendamentos, pagamentos e atendimento em um só sistema. Seu negócio funcionando com método, não com sorte.' }}</p>
 
                 <ul class="sol-features">
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        {{ $isEn ? 'Admin dashboard with real-time metrics' : 'Painel administrativo com métricas em tempo real' }}
+                        {{ $isEn ? 'Scheduling 24h with no staff required' : 'Agendamento 24h sem precisar de atendente' }}
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        {{ $isEn ? '24/7 automated scheduling via link and WhatsApp' : 'Agendamentos 24h automáticos via link e WhatsApp' }}
+                        {{ $isEn ? 'Accept PIX payments directly through the system' : 'Receba via PIX direto pelo sistema' }}
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        {{ $isEn ? 'Integrated PIX payments' : 'Recebimentos via PIX integrados' }}
+                        {{ $isEn ? 'Revenue reports to track your growth' : 'Relatórios de faturamento para acompanhar o crescimento' }}
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        {{ $isEn ? 'Organized client database with full history' : 'Base de clientes organizada com histórico completo' }}
+                        {{ $isEn ? 'Complete history for every client' : 'Histórico completo de cada cliente' }}
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        {{ $isEn ? 'Financial and net revenue reports' : 'Relatórios financeiros e de faturamento líquido' }}
+                        {{ $isEn ? 'Full operational control in your pocket' : 'Controle operacional na palma da mão' }}
                     </li>
                 </ul>
 
                 <div class="sol-ideal">
                     <div class="sol-ideal__label">{{ $isEn ? 'Target Focus' : 'Foco de Atuação' }}</div>
-                    <div class="sol-ideal__list">{{ $isEn ? 'Businesses that want to professionalize service, automate billing and have full operational control.' : 'Negócios que querem profissionalizar o atendimento, automatizar o faturamento e ter controle total da operação.' }}</div>
+                    <div class="sol-ideal__list">{{ $isEn ? 'Businesses that want to serve more clients, waste less time and have real control over daily operations.' : 'Negócios que querem atender mais, perder menos tempo e ter controle real do que acontece no dia a dia.' }}</div>
                 </div>
 
                 <div class="sol-price">
                     <div class="sol-price__label">{{ $isEn ? 'Investment' : 'Investimento' }}</div>
-                    <div class="sol-price__row" style="align-items: baseline; gap: 6px;">
-                        <div class="sol-price__value" style="font-size: 1.25rem;"><span class="sol-price__currency">R$</span>2.800</div>
-                        <span style="font-size: 11px; color: #52525b; font-weight: 600; flex-shrink: 0;">–</span>
-                        <div class="sol-price__value" style="font-size: 1.25rem;"><span class="sol-price__currency">R$</span>3.500</div>
-                    </div>
+                    <div class="sol-price__value" style="font-size: 1.2rem; font-family: 'Orbitron', sans-serif;">{{ $isEn ? 'Custom Quote' : 'Sob Consulta' }}</div>
                 </div>
 
                 <button class="sol-cta sol-cta--featured" type="button">
                     {{ $isEn ? 'View Demo' : 'Ver Demonstração' }} <span class="sol-cta__arrow">→</span>
                 </button>
-                <p class="sol-price__monthly">+ R$60/{{ $isEn ? 'mo' : 'mês' }} ({{ $isEn ? 'domain, hosting and basic support' : 'domínio, hospedagem e suporte básico' }})</p>
+                <p class="sol-price__monthly">
+                    @if($isEn)
+                        <span style="color: #a855f7; font-weight: 700;">Up to 3× no interest</span> · + R$60/mo (domain, hosting and support)
+                    @else
+                        <span style="color: #a855f7; font-weight: 700;">Parcele em até 3x sem juros</span> · + R$60/mês (domínio, hospedagem e suporte)
+                    @endif
+                </p>
             </div>
 
             {{-- ============ SOLUÇÃO 03 — Equipe PRO ============ --}}
@@ -744,53 +773,53 @@
                 </div>
 
                 <div class="sol-card__level">{{ $isEn ? 'Solution 03' : 'Solução 03' }}</div>
-                <h3 class="sol-card__title">{{ $isEn ? 'PRO Team' : 'Equipe PRO' }}</h3>
-                <p class="sol-card__phrase">"{{ $isEn ? 'Your team organized, productive and scaling together.' : 'Sua equipe organizada, produtiva e escalando junto.' }}"</p>
-                <p class="sol-card__desc">{{ $isEn ? 'Multi-user platform for teams that want to grow with control, performance and security.' : 'Plataforma multiusuário para equipes que desejam crescer com controle, performance e segurança.' }}</p>
+                <h3 class="sol-card__title">{{ $isEn ? 'PRO Studio' : 'Studio PRO' }}</h3>
+                <p class="sol-card__phrase">{{ $isEn ? 'When your team grows, your operation needs to keep up.' : 'Quando sua equipe cresce, a operação precisa crescer junto.' }}</p>
+                <p class="sol-card__desc">{{ $isEn ? 'Full visibility over your business. Every professional, every service, every result in one centralized panel.' : 'Visibilidade total sobre o seu negócio. Cada profissional, cada atendimento, cada resultado em um painel centralizado.' }}</p>
 
                 <ul class="sol-features">
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        {{ $isEn ? 'Multiple users with profiles and permissions' : 'Múltiplos usuários com perfis e permissões' }}
+                        {{ $isEn ? 'Individual profiles with permission control' : 'Perfis individuais com controle de permissões' }}
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        {{ $isEn ? 'Shared schedule with smart distribution' : 'Agenda compartilhada com distribuição inteligente' }}
+                        {{ $isEn ? 'Shared calendar with smart distribution' : 'Agenda compartilhada com distribuição inteligente' }}
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        {{ $isEn ? 'Payment split (PIX and Credit Card)' : 'Split de pagamentos (PIX e Cartão de Crédito)' }}
+                        {{ $isEn ? 'Payment split across team members' : 'Split de pagamento entre colaboradores' }}
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        {{ $isEn ? 'Individual productivity and commission reports' : 'Relatórios individuais de produtividade e comissão' }}
+                        {{ $isEn ? 'Productivity and commission reports per professional' : 'Relatório de produtividade e comissão por profissional' }}
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        {{ $isEn ? 'Team client and service management' : 'Gestão de clientes e serviços da equipe' }}
+                        {{ $isEn ? 'Team client management in one place' : 'Gestão de clientes da equipe em um só lugar' }}
                     </li>
                 </ul>
 
                 <div class="sol-ideal">
                     <div class="sol-ideal__label">{{ $isEn ? 'Target Focus' : 'Foco de Atuação' }}</div>
-                    <div class="sol-ideal__list">{{ $isEn ? 'Companies with teams that need to manage schedule, performance, productivity and profitability.' : 'Empresas que possuem equipes e precisam manter agenda, performance, produtividade e lucratividade.' }}</div>
+                    <div class="sol-ideal__list">{{ $isEn ? 'Barbershops, clinics and studios with teams that need control without compromising quality.' : 'Barbearias, clínicas e estúdios com equipe que precisam de controle sem abrir mão da qualidade.' }}</div>
                 </div>
 
                 <div class="sol-price">
-                    <div class="sol-price__row">
-                        <span class="sol-price__de">{{ $isEn ? 'WAS' : 'DE' }}</span>
-                        <span class="sol-price__original">R$ 5.200</span>
-                    </div>
-                    <div class="sol-price__row" style="margin-top: 4px;">
-                        <span class="sol-price__por">{{ $isEn ? 'NOW' : 'POR' }}</span>
-                        <div class="sol-price__value"><span class="sol-price__currency">R$</span>3.200</div>
-                    </div>
+                    <div class="sol-price__label">{{ $isEn ? 'Investment' : 'Investimento' }}</div>
+                    <div class="sol-price__value" style="font-size: 1.2rem; font-family: 'Orbitron', sans-serif;">{{ $isEn ? 'Custom Quote' : 'Sob Consulta' }}</div>
                 </div>
 
                 <a href="{{ $isEn ? '/en#agendamento' : '/#agendamento' }}" class="sol-cta">
                     {{ $isEn ? 'Request a Proposal' : 'Solicitar Proposta' }} <span class="sol-cta__arrow">→</span>
                 </a>
-                <p class="sol-price__monthly">+ R$60/{{ $isEn ? 'mo' : 'mês' }} ({{ $isEn ? 'domain, hosting and basic support' : 'domínio, hospedagem e suporte básico' }})</p>
+                <p class="sol-price__monthly">
+                    @if($isEn)
+                        <span style="color: #a855f7; font-weight: 700;">Up to 3× no interest</span> · + R$60/mo (domain, hosting and support)
+                    @else
+                        <span style="color: #a855f7; font-weight: 700;">Parcele em até 3x sem juros</span> · + R$60/mês (domínio, hospedagem e suporte)
+                    @endif
+                </p>
             </div>
 
             {{-- ============ SOLUÇÃO 04 — Enterprise ============ --}}
@@ -818,13 +847,13 @@
 
                 <div class="sol-card__level">{{ $isEn ? 'Solution 04' : 'Solução 04' }}</div>
                 <h3 class="sol-card__title">Enterprise</h3>
-                <p class="sol-card__phrase">"{{ $isEn ? 'When standard won\'t cut it. We build what your business actually needs.' : 'Quando o padrão não resolve. Construímos o que o seu negócio realmente precisa.' }}"</p>
-                <p class="sol-card__desc">{{ $isEn ? 'Dedicated software engineering for complex operations that require exclusive solutions and advanced integrations.' : 'Engenharia de software dedicada para operações complexas que exigem soluções exclusivas e integrações avançadas.' }}</p>
+                <p class="sol-card__phrase">{{ $isEn ? 'When off-the-shelf won\'t work. We build what your business actually needs.' : 'Quando o padrão não resolve. Construímos o que o seu negócio realmente precisa.' }}</p>
+                <p class="sol-card__desc">{{ $isEn ? 'Software engineering for operations that require exclusive solutions. From system to process, everything designed for your business model.' : 'Engenharia de software para operações que exigem soluções exclusivas. Do sistema ao processo, tudo pensado para o seu modelo de negócio.' }}</p>
 
                 <ul class="sol-features">
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="stroke: #818cf8;"><polyline points="20 6 9 17 4 12"/></svg>
-                        {{ $isEn ? '100% custom-built system' : 'Sistema 100% sob medida' }}
+                        {{ $isEn ? 'System 100% custom-built' : 'Sistema 100% desenvolvido sob medida' }}
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="stroke: #818cf8;"><polyline points="20 6 9 17 4 12"/></svg>
@@ -832,21 +861,21 @@
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="stroke: #818cf8;"><polyline points="20 6 9 17 4 12"/></svg>
-                        {{ $isEn ? 'Scalable architecture for high volume and performance' : 'Arquitetura escalável para alto volume e performance' }}
+                        {{ $isEn ? 'Scalable architecture for high traffic and performance' : 'Arquitetura escalável para alto volume e performance' }}
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="stroke: #818cf8;"><polyline points="20 6 9 17 4 12"/></svg>
-                        {{ $isEn ? 'VIP support with guaranteed SLA' : 'Suporte VIP com SLA garantido' }}
+                        {{ $isEn ? 'Dedicated support with defined SLA' : 'Suporte dedicado com SLA definido' }}
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="stroke: #818cf8;"><polyline points="20 6 9 17 4 12"/></svg>
-                        {{ $isEn ? 'Cutting-edge technology applied to your business model' : 'Tecnologia de ponta aplicada ao seu modelo de negócio' }}
+                        {{ $isEn ? 'Cutting-edge technology applied to your business' : 'Tecnologia de ponta aplicada ao seu negócio' }}
                     </li>
                 </ul>
 
                 <div class="sol-ideal">
                     <div class="sol-ideal__label">{{ $isEn ? 'Target Focus' : 'Foco de Atuação' }}</div>
-                    <div class="sol-ideal__list">{{ $isEn ? 'Large companies, franchises, industries and operations demanding high performance and dedicated architecture.' : 'Empresas de grande porte, franquias, indústrias e operações que exigem alta performance e arquitetura dedicada.' }}</div>
+                    <div class="sol-ideal__list">{{ $isEn ? 'Companies with complex operations that need technology built specifically for their model, not adapted from something generic.' : 'Empresas com operações complexas que precisam de tecnologia construída para o seu modelo, não adaptada de algo genérico.' }}</div>
                 </div>
 
                 <div class="sol-price">
@@ -857,7 +886,13 @@
                 <a href="{{ $isEn ? '/en#agendamento' : '/#agendamento' }}" class="sol-cta sol-cta--enterprise">
                     {{ $isEn ? 'Talk to a Specialist' : 'Falar com Especialista' }} <span class="sol-cta__arrow">→</span>
                 </a>
-                <p class="sol-price__monthly" style="color: #3f3f46;">{{ $isEn ? 'Infrastructure and support upon request' : 'Infraestrutura e suporte sob consulta' }}</p>
+                <p class="sol-price__monthly">
+                    @if($isEn)
+                        <span style="color: #a855f7; font-weight: 700;">Up to 3× no interest</span> · + R$60/mo (domain, hosting and support)
+                    @else
+                        <span style="color: #a855f7; font-weight: 700;">Parcele em até 3x sem juros</span> · + R$60/mês (domínio, hospedagem e suporte)
+                    @endif
+                </p>
             </div>
 
         </div>{{-- /sol-grid --}}
@@ -909,9 +944,9 @@
 
         {{-- CTA final --}}
         <div class="text-center mt-12 sol-reveal">
-            <p class="text-zinc-500 text-sm mb-5">{{ $isEn ? 'Need something outside the standard?' : 'Precisa de algo fora do padrão?' }}</p>
+            <p class="text-zinc-500 text-sm mb-5">{{ $isEn ? 'Have something specific in mind?' : 'Tem algo específico em mente?' }}</p>
             <a href="{{ $isEn ? '/en#agendamento' : '/#agendamento' }}" class="inline-flex items-center gap-2 px-7 py-3 rounded-full text-xs font-bold bg-gradient-to-r from-purple-600 to-indigo-600 text-white uppercase tracking-widest transition-all hover:scale-105 shadow-[0_4px_20px_rgba(168,85,247,0.25)]" style="font-family: 'Orbitron', sans-serif;">
-                {{ $isEn ? 'Align Custom Project' : 'Alinhar Projeto Exclusivo' }} <span>→</span>
+                {{ $isEn ? 'Talk about your project' : 'Conversar sobre seu projeto' }} <span>→</span>
             </a>
         </div>
 
